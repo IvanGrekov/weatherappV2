@@ -18,7 +18,7 @@ function App(): JSX.Element {
             <SafeAreaView>
                 <StatusBar
                     barStyle="dark-content"
-                    backgroundColor={STYLE_VARIABLES.bgColor}
+                    backgroundColor={STYLE_VARIABLES.white}
                 />
                 <Box style={styles.appWrapper}>
                     <AppContent />
