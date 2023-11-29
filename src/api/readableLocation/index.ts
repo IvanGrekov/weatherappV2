@@ -1,5 +1,5 @@
 import { IApiError } from '../../types/api.types';
-import { IGeoLocation, IReadableLocation } from '../../types/geoLocation.types';
+import { IGeoLocation, IReadableLocation } from '../../types/location.types';
 
 import { BASE_URL, BASE_SEARCH_PARAMS } from './constants';
 

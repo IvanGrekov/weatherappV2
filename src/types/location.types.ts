@@ -5,6 +5,8 @@ export interface IGeoLocation {
 
 export interface IReadableLocation {
     city: string;
-    state: string;
+    state?: string;
     country: string;
 }
+
+export type TLocation = IGeoLocation & IReadableLocation;

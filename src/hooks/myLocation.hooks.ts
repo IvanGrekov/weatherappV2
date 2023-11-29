@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { getMyLocation } from '../api/myLocation';
+import { getMyGeoLocation } from '../api/myGeoLocation';
 import { getReadableLocation } from '../api/readableLocation';
-import { IGeoLocation, IReadableLocation } from '../types/geoLocation.types';
+import {
+    IGeoLocation,
+    IReadableLocation,
+    TLocation,
+} from '../types/location.types';
 
 type TGeoLocationState = IGeoLocation | null;
 type TReadableLocationState = IReadableLocation | null;
+type TLocationState = TLocation | null;
 
 type TUseMyGeoLocation = () => {
-    myReadableLocation: TReadableLocationState;
+    myLocation: TLocationState;
     loading: boolean;
     error: string;
 };
@@ -25,7 +30,7 @@ const useGetMyGeoLocation: TUseGetMyGeoLocation = ({
     setLoading,
 }) => {
     useEffect(() => {
-        getMyLocation()
+        getMyGeoLocation()
             .then((result) => {
                 if ('errorMessage' in result) {
                     return setError(result.errorMessage);
@@ -93,5 +98,13 @@ export const useMyGeoLocation: TUseMyGeoLocation = () => {
         setLoading,
     });
 
-    return { myReadableLocation, loading, error };
+    const myLocation: TLocationState =
+        myGeoLocation && myReadableLocation
+            ? {
+                  ...myGeoLocation,
+                  ...myReadableLocation,
+              }
+            : null;
+
+    return { myLocation, loading, error };
 };
