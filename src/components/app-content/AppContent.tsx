@@ -1,12 +1,13 @@
 import { Box, Text } from 'native-base';
 
-import { DEFAULT_LOCATION } from '../../constants/geoLocation';
-import { useMyGeoLocation } from '../../hooks/geoLocation.hooks';
+import { DEFAULT_READABLE_LOCATION } from '../../constants/geoLocation';
+import { useMyGeoLocation } from '../../hooks/myLocation.hooks';
+import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 import ScreenContainer from '../screen-container/ScreenContainer';
 
 export default function AppContent(): JSX.Element {
-    const { myGeoLocation, loading } = useMyGeoLocation();
+    const { myReadableLocation, loading, error } = useMyGeoLocation();
 
     if (loading) {
         return (
@@ -16,7 +17,15 @@ export default function AppContent(): JSX.Element {
         );
     }
 
-    const location = myGeoLocation || DEFAULT_LOCATION;
+    if (error) {
+        return (
+            <ScreenContainer>
+                <ErrorIndicator error={error} />
+            </ScreenContainer>
+        );
+    }
+
+    const location = myReadableLocation || DEFAULT_READABLE_LOCATION;
 
     return (
         <Box>

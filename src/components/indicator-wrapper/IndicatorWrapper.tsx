@@ -9,7 +9,7 @@ interface IIndicatorWrapperProps extends PropsWithChildren {
     style?: Record<string, unknown>;
 }
 
-const SIZE = 150;
+const SIZE = 180;
 
 export default function IndicatorWrapper({
     style = {},
