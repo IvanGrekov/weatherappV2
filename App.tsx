@@ -7,6 +7,7 @@
 
 import { StyleSheet, SafeAreaView } from 'react-native';
 
+import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider, StatusBar, Box } from 'native-base';
 
 import AppContent from './src/components/app-content/AppContent';
@@ -14,17 +15,19 @@ import { STYLE_VARIABLES } from './src/constants/style';
 
 function App(): JSX.Element {
     return (
-        <NativeBaseProvider>
-            <SafeAreaView>
-                <StatusBar
-                    barStyle="dark-content"
-                    backgroundColor={STYLE_VARIABLES.white}
-                />
-                <Box style={styles.appWrapper}>
-                    <AppContent />
-                </Box>
-            </SafeAreaView>
-        </NativeBaseProvider>
+        <NavigationContainer>
+            <NativeBaseProvider>
+                <SafeAreaView>
+                    <StatusBar
+                        barStyle="dark-content"
+                        backgroundColor={STYLE_VARIABLES.white}
+                    />
+                    <Box style={styles.appWrapper}>
+                        <AppContent />
+                    </Box>
+                </SafeAreaView>
+            </NativeBaseProvider>
+        </NavigationContainer>
     );
 }
 

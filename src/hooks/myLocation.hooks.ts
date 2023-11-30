@@ -46,6 +46,7 @@ const useGetMyGeoLocation: TUseGetMyGeoLocation = ({
 
 type TUseGetMyReadableLocation = (args: {
     myGeoLocation: TGeoLocationState;
+    myReadableLocation: TReadableLocationState;
     setError: (error: string) => void;
     setMyReadableLocation: (location: TReadableLocationState) => void;
     setLoading: (loading: boolean) => void;
@@ -53,12 +54,13 @@ type TUseGetMyReadableLocation = (args: {
 
 const useGetMyReadableLocation: TUseGetMyReadableLocation = ({
     myGeoLocation,
+    myReadableLocation,
     setError,
     setMyReadableLocation,
     setLoading,
 }) => {
     useEffect(() => {
-        if (!myGeoLocation) {
+        if (!myGeoLocation || myReadableLocation) {
             return;
         }
 
@@ -74,7 +76,13 @@ const useGetMyReadableLocation: TUseGetMyReadableLocation = ({
             .finally(() => {
                 setLoading(false);
             });
-    }, [myGeoLocation, setError, setMyReadableLocation, setLoading]);
+    }, [
+        myGeoLocation,
+        myReadableLocation,
+        setError,
+        setMyReadableLocation,
+        setLoading,
+    ]);
 };
 
 export const useMyGeoLocation: TUseMyGeoLocation = () => {
@@ -93,6 +101,7 @@ export const useMyGeoLocation: TUseMyGeoLocation = () => {
 
     useGetMyReadableLocation({
         myGeoLocation,
+        myReadableLocation,
         setError,
         setMyReadableLocation,
         setLoading,

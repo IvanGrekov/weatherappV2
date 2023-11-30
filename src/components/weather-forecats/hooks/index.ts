@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useIsFocused } from '@react-navigation/native';
+
 import { getWeatherForecast } from '../../../api/weatherForecast';
 import { IGeoLocation } from '../../../types/location.types';
 import { IWeatherForecast } from '../../../types/weatherForecast.types';
@@ -12,17 +14,30 @@ type TUseWeatherForecast = (args: IGeoLocation) => {
     error: string;
 };
 
+let abortController = new AbortController();
+
 export const useWeatherForecast: TUseWeatherForecast = ({
     latitude,
     longitude,
 }) => {
+    const isFocused = useIsFocused();
+
     const [weatherForecast, setWeatherForecast] =
         useState<TWeatherForecastState>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        getWeatherForecast({ latitude, longitude })
+        if (!isFocused) {
+            setWeatherForecast(null);
+            setLoading(false);
+            setError('');
+
+            return;
+        }
+
+        setLoading(true);
+        getWeatherForecast({ latitude, longitude, abortController })
             .then((data) => {
                 if ('errorMessage' in data) {
                     return setError(data.errorMessage);
@@ -33,7 +48,12 @@ export const useWeatherForecast: TUseWeatherForecast = ({
             .finally(() => {
                 setLoading(false);
             });
-    }, [latitude, longitude]);
+
+        return () => {
+            abortController.abort();
+            abortController = new AbortController();
+        };
+    }, [isFocused, latitude, longitude]);
 
     return {
         weatherForecast,
