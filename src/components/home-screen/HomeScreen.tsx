@@ -10,33 +10,31 @@ import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 import ScreenContainer from '../screen-container/ScreenContainer';
 import WeatherForecast from '../weather-forecast/WeatherForecast';
 
-const HomeScreen = observer(
-    ({ route }: TRootTabScreenProps<ERouteNames.HOME>): JSX.Element => {
-        const { location } = route.params || {};
+function HomeScreen({
+    route,
+}: TRootTabScreenProps<ERouteNames.HOME>): JSX.Element {
+    const { location } = route.params || {};
 
-        const myLocationStore = useMyLocationStore();
+    const myLocationStore = useMyLocationStore();
 
-        useEffect(() => {
-            myLocationStore.getMyLocation();
-        }, [myLocationStore]);
+    useEffect(() => {
+        myLocationStore.getMyLocation();
+    }, [myLocationStore]);
 
-        const myLocation = myLocationStore.myLocation;
-        const selectedLocation = location || myLocation || DEFAULT_LOCATION;
-        const isLoading = myLocationStore.loading;
-        const error = myLocationStore.error;
+    const myLocation = myLocationStore.myLocation;
+    const selectedLocation = location || myLocation || DEFAULT_LOCATION;
+    const isLoading = myLocationStore.loading;
+    const error = myLocationStore.error;
 
-        return (
-            <ScreenContainer>
-                <LoadingIndicator isLoading={isLoading} />
+    return (
+        <ScreenContainer>
+            <LoadingIndicator isLoading={isLoading} />
 
-                {!isLoading && <ErrorIndicator error={error} />}
+            {!isLoading && <ErrorIndicator error={error} />}
 
-                {!isLoading && !error && (
-                    <WeatherForecast {...selectedLocation} />
-                )}
-            </ScreenContainer>
-        );
-    },
-);
+            {!isLoading && !error && <WeatherForecast {...selectedLocation} />}
+        </ScreenContainer>
+    );
+}
 
-export default HomeScreen;
+export default observer(HomeScreen);

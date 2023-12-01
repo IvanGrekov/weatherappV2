@@ -34,7 +34,10 @@ export const useWeatherForecast: TUseWeatherForecast = ({
         const cacheKey = getLocationCacheKey({ latitude, longitude });
         const cachedWeatherForecast = weatherCache.get(cacheKey);
         if (cachedWeatherForecast) {
-            return setWeatherForecast(cachedWeatherForecast);
+            setLoading(false);
+            setWeatherForecast(cachedWeatherForecast);
+
+            return;
         }
 
         getWeatherForecast({
