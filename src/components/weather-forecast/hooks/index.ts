@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { IGeoLocation } from '../../../types/location.types';
+import { getLocationCacheKey } from '../../../utils/cache.utils';
 import { weatherCache } from '../constants';
 import { TWeatherForecastState } from '../types';
-import {
-    getWeatherCacheKey,
-    getWeatherForecast,
-} from '../utils/getWeatherForecast.utils';
+import { getWeatherForecast } from '../utils/getWeatherForecast.utils';
 
 type TUseWeatherForecast = (args: IGeoLocation) => {
     weatherForecast: TWeatherForecastState;
@@ -33,7 +31,7 @@ export const useWeatherForecast: TUseWeatherForecast = ({
             return;
         }
 
-        const cacheKey = getWeatherCacheKey({ latitude, longitude });
+        const cacheKey = getLocationCacheKey({ latitude, longitude });
         const cachedWeatherForecast = weatherCache.get(cacheKey);
         if (cachedWeatherForecast) {
             return setWeatherForecast(cachedWeatherForecast);

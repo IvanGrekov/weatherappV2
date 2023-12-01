@@ -1,8 +1,9 @@
+import { useEffect } from 'react';
+
 import { observer } from 'mobx-react-lite';
 
 import { DEFAULT_LOCATION } from '../../constants/location';
-import { useMyReadableLocation } from '../../hooks/myLocation.hooks';
-import { useMyGeoLocationStore } from '../../stores/my-geo-location';
+import { useMyLocationStore } from '../../stores/my-location';
 import { TRootTabScreenProps, ERouteNames } from '../../types/routes.types';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -13,11 +14,16 @@ const HomeScreen = observer(
     ({ route }: TRootTabScreenProps<ERouteNames.HOME>): JSX.Element => {
         const { location } = route.params || {};
 
-        const myGeoLocationStore = useMyGeoLocationStore();
-        const { myLocation, loading, error } = useMyReadableLocation();
+        const myLocationStore = useMyLocationStore();
 
+        useEffect(() => {
+            myLocationStore.getMyLocation();
+        }, [myLocationStore]);
+
+        const myLocation = myLocationStore.myLocation;
         const selectedLocation = location || myLocation || DEFAULT_LOCATION;
-        const isLoading = loading || myGeoLocationStore.loading;
+        const isLoading = myLocationStore.loading;
+        const error = myLocationStore.error;
 
         return (
             <ScreenContainer>

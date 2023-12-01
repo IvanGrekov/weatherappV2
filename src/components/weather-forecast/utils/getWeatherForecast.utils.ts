@@ -1,11 +1,6 @@
 import { getWeatherForecast as getWeatherForecastQuery } from '../../../api/weatherForecast';
-import { IGeoLocation } from '../../../types/location.types';
 import { weatherCache } from '../constants';
-
-export const getWeatherCacheKey = ({
-    latitude,
-    longitude,
-}: IGeoLocation): string => `${latitude}${longitude}`;
+import { TWeatherForecastState } from '../types';
 
 type TGetWeatherForecast = (args: {
     latitude: number;
@@ -14,7 +9,7 @@ type TGetWeatherForecast = (args: {
     cacheKey: string;
     setLoading: (loading: boolean) => void;
     setError: (error: string) => void;
-    setWeatherForecast: (weatherForecast: any) => void;
+    setWeatherForecast: (weatherForecast: TWeatherForecastState) => void;
 }) => void;
 
 export const getWeatherForecast: TGetWeatherForecast = ({
