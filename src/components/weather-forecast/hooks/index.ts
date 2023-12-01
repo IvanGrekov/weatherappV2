@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { useIsFocused } from '@react-navigation/native';
-
-import { getWeatherForecast } from '../../../api/weatherForecast';
 import { IGeoLocation } from '../../../types/location.types';
-import { IWeatherForecast } from '../../../types/weatherForecast.types';
-
-type TWeatherForecastState = IWeatherForecast | null;
+import { weatherCache } from '../constants';
+import { TWeatherForecastState } from '../types';
+import { getWeatherCacheKey, getWeatherForecast } from '../utils';
 
 type TUseWeatherForecast = (args: IGeoLocation) => {
     weatherForecast: TWeatherForecastState;
@@ -20,40 +17,40 @@ export const useWeatherForecast: TUseWeatherForecast = ({
     latitude,
     longitude,
 }) => {
-    const isFocused = useIsFocused();
-
     const [weatherForecast, setWeatherForecast] =
         useState<TWeatherForecastState>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        if (!isFocused) {
-            setWeatherForecast(null);
-            setLoading(false);
-            setError('');
-
+        if (
+            weatherForecast?.latitude === latitude &&
+            weatherForecast.longitude === longitude
+        ) {
             return;
         }
 
-        setLoading(true);
-        getWeatherForecast({ latitude, longitude, abortController })
-            .then((data) => {
-                if ('errorMessage' in data) {
-                    return setError(data.errorMessage);
-                }
+        const cacheKey = getWeatherCacheKey({ latitude, longitude });
+        const cachedWeatherForecast = weatherCache.get(cacheKey);
+        if (cachedWeatherForecast) {
+            return setWeatherForecast(cachedWeatherForecast);
+        }
 
-                setWeatherForecast(data);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        getWeatherForecast({
+            latitude,
+            longitude,
+            abortController,
+            cacheKey,
+            setLoading,
+            setError,
+            setWeatherForecast,
+        });
 
         return () => {
             abortController.abort();
             abortController = new AbortController();
         };
-    }, [isFocused, latitude, longitude]);
+    }, [weatherForecast, latitude, longitude]);
 
     return {
         weatherForecast,

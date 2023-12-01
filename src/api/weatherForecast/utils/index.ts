@@ -1,3 +1,4 @@
+import { IGeoLocation } from '../../../types/location.types';
 import {
     IApiWeatherForecast,
     IWeatherForecast,
@@ -72,16 +73,22 @@ const convertApiDailyWeatherToDailyWeather: TConvertApiDailyWeatherToDailyWeathe
     };
 
 type TConvertApiWeatherForecastToWeatherForecast = (
-    apiWeatherForecast: IApiWeatherForecast,
+    args: IGeoLocation & {
+        apiWeatherForecast: IApiWeatherForecast;
+    },
 ) => IWeatherForecast;
 
 export const convertApiWeatherForecastToWeatherForecast: TConvertApiWeatherForecastToWeatherForecast =
-    ({ timezone, timezone_offset, current, daily }) => {
+    ({ apiWeatherForecast, latitude, longitude }) => {
+        const { timezone, timezone_offset, current, daily } =
+            apiWeatherForecast;
         const convertedCurrent =
             convertApiCurrentWeatherToCurrentWeather(current);
         const convertedDaily = daily.map(convertApiDailyWeatherToDailyWeather);
 
         return {
+            latitude,
+            longitude,
             timezone,
             timezoneOffset: timezone_offset,
             current: convertedCurrent,

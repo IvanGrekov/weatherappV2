@@ -10,7 +10,6 @@ import { useWeatherForecast } from './hooks';
 
 export default function WeatherForecast({
     city,
-    state,
     country,
     ...geoLocationProps
 }: TLocation): JSX.Element {
@@ -34,9 +33,8 @@ export default function WeatherForecast({
     return (
         <VStack space={STYLE_VARIABLES.smSpacing}>
             <Text>{city}</Text>
-            <Text>{state}</Text>
             <Text>{country}</Text>
-            <Text>{JSON.stringify(weatherForecast, null, 4)}</Text>
+            <Text>{weatherForecast.current.temp}</Text>
         </VStack>
     );
 }

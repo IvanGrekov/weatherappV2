@@ -28,7 +28,11 @@ export const getWeatherForecast: TGetWeatherForecast = async ({
             throw parsedResponse.message;
         }
 
-        return convertApiWeatherForecastToWeatherForecast(parsedResponse);
+        return convertApiWeatherForecastToWeatherForecast({
+            latitude,
+            longitude,
+            apiWeatherForecast: parsedResponse,
+        });
     } catch (errorMessage) {
         return {
             errorMessage,

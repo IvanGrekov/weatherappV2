@@ -1,3 +1,5 @@
+import { IGeoLocation } from './location.types';
+
 export type TWeatherIcon =
     | '01d'
     | '01n'
@@ -57,7 +59,7 @@ export interface IDailyWeather {
     weatherDescription: IWeatherDescription;
 }
 
-export interface IWeatherForecast {
+export interface IWeatherForecast extends IGeoLocation {
     timezone: string;
     timezoneOffset: number;
     current: ICurrentWeather;
