@@ -12,20 +12,23 @@ import { NativeBaseProvider, StatusBar, Box } from 'native-base';
 
 import { STYLE_VARIABLES } from './src/constants/style';
 import Routes from './src/routes';
+import { MyGeoLocationStoreProvider } from './src/stores/my-geo-location';
 
 function App(): JSX.Element {
     return (
         <NavigationContainer>
             <NativeBaseProvider>
-                <SafeAreaView>
-                    <StatusBar
-                        barStyle="dark-content"
-                        backgroundColor={STYLE_VARIABLES.white}
-                    />
-                    <Box style={styles.appWrapper}>
-                        <Routes />
-                    </Box>
-                </SafeAreaView>
+                <MyGeoLocationStoreProvider>
+                    <SafeAreaView>
+                        <StatusBar
+                            barStyle="dark-content"
+                            backgroundColor={STYLE_VARIABLES.white}
+                        />
+                        <Box style={styles.appWrapper}>
+                            <Routes />
+                        </Box>
+                    </SafeAreaView>
+                </MyGeoLocationStoreProvider>
             </NativeBaseProvider>
         </NavigationContainer>
     );

@@ -1,26 +1,36 @@
+import { observer } from 'mobx-react-lite';
+
 import { DEFAULT_LOCATION } from '../../constants/location';
-import { useMyGeoLocation } from '../../hooks/myLocation.hooks';
+import { useMyReadableLocation } from '../../hooks/myLocation.hooks';
+import { useMyGeoLocationStore } from '../../stores/my-geo-location';
 import { TRootTabScreenProps, ERouteNames } from '../../types/routes.types';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 import ScreenContainer from '../screen-container/ScreenContainer';
 import WeatherForecast from '../weather-forecast/WeatherForecast';
 
-export default function HomeScreen({
-    route,
-}: TRootTabScreenProps<ERouteNames.HOME>): JSX.Element {
-    const { location } = route.params || {};
+const HomeScreen = observer(
+    ({ route }: TRootTabScreenProps<ERouteNames.HOME>): JSX.Element => {
+        const { location } = route.params || {};
 
-    const { myLocation, loading, error } = useMyGeoLocation();
-    const selectedLocation = location || myLocation || DEFAULT_LOCATION;
+        const myGeoLocationStore = useMyGeoLocationStore();
+        const { myLocation, loading, error } = useMyReadableLocation();
 
-    return (
-        <ScreenContainer>
-            <LoadingIndicator isLoading={loading} />
+        const selectedLocation = location || myLocation || DEFAULT_LOCATION;
+        const isLoading = loading || myGeoLocationStore.loading;
 
-            {!loading && <ErrorIndicator error={error} />}
+        return (
+            <ScreenContainer>
+                <LoadingIndicator isLoading={isLoading} />
 
-            {!loading && !error && <WeatherForecast {...selectedLocation} />}
-        </ScreenContainer>
-    );
-}
+                {!isLoading && <ErrorIndicator error={error} />}
+
+                {!isLoading && !error && (
+                    <WeatherForecast {...selectedLocation} />
+                )}
+            </ScreenContainer>
+        );
+    },
+);
+
+export default HomeScreen;

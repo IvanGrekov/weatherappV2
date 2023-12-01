@@ -1,64 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { getMyGeoLocation } from '../api/myGeoLocation';
+import { getMyGeoLocation as getMyGeoLocationQuery } from '../api/myGeoLocation';
 import { getReadableLocation } from '../api/readableLocation';
-import {
-    IGeoLocation,
-    IReadableLocation,
-    TLocation,
-} from '../types/location.types';
+import { useMyGeoLocationStore } from '../stores/my-geo-location';
+import { IReadableLocation, TLocation } from '../types/location.types';
 
-type TGeoLocationState = IGeoLocation | null;
+export const useGetMyGeoLocation = (): (() => void) => {
+    const myGeoLocationStore = useMyGeoLocationStore();
+
+    return useCallback((): void => {
+        myGeoLocationStore.setError('');
+        myGeoLocationStore.setLoading(true);
+        getMyGeoLocationQuery()
+            .then((result) => {
+                if ('errorMessage' in result) {
+                    return myGeoLocationStore.setError(result.errorMessage);
+                }
+
+                myGeoLocationStore.setMyGeoLocation(result);
+            })
+            .finally(() => {
+                myGeoLocationStore.setLoading(false);
+            });
+    }, [myGeoLocationStore]);
+};
+
 type TReadableLocationState = IReadableLocation | null;
 type TLocationState = TLocation | null;
 
-type TUseMyGeoLocation = () => {
+type TUseMyReadableLocation = () => {
     myLocation: TLocationState;
     loading: boolean;
     error: string;
 };
 
-type TUseGetMyGeoLocation = (args: {
-    setError: (error: string) => void;
-    setMyGeoLocation: (geoLocation: TGeoLocationState) => void;
-    setLoading: (loading: boolean) => void;
-}) => void;
+export const useMyReadableLocation: TUseMyReadableLocation = () => {
+    const myGeoLocationStore = useMyGeoLocationStore();
+    const myGeoLocation = myGeoLocationStore.myGeoLocation;
 
-const useGetMyGeoLocation: TUseGetMyGeoLocation = ({
-    setError,
-    setMyGeoLocation,
-    setLoading,
-}) => {
+    const [myReadableLocation, setMyReadableLocation] =
+        useState<TReadableLocationState>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const getMyGeoLocation = useGetMyGeoLocation();
+
     useEffect(() => {
-        getMyGeoLocation()
-            .then((result) => {
-                if ('errorMessage' in result) {
-                    return setError(result.errorMessage);
-                }
+        getMyGeoLocation();
+    }, [getMyGeoLocation]);
 
-                setMyGeoLocation(result);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [setError, setMyGeoLocation, setLoading]);
-};
-
-type TUseGetMyReadableLocation = (args: {
-    myGeoLocation: TGeoLocationState;
-    myReadableLocation: TReadableLocationState;
-    setError: (error: string) => void;
-    setMyReadableLocation: (location: TReadableLocationState) => void;
-    setLoading: (loading: boolean) => void;
-}) => void;
-
-const useGetMyReadableLocation: TUseGetMyReadableLocation = ({
-    myGeoLocation,
-    myReadableLocation,
-    setError,
-    setMyReadableLocation,
-    setLoading,
-}) => {
     useEffect(() => {
         if (!myGeoLocation || myReadableLocation) {
             return;
@@ -76,44 +66,19 @@ const useGetMyReadableLocation: TUseGetMyReadableLocation = ({
             .finally(() => {
                 setLoading(false);
             });
-    }, [
-        myGeoLocation,
-        myReadableLocation,
-        setError,
-        setMyReadableLocation,
-        setLoading,
-    ]);
-};
+    }, [myGeoLocation, myReadableLocation]);
 
-export const useMyGeoLocation: TUseMyGeoLocation = () => {
-    const [myGeoLocation, setMyGeoLocation] = useState<TGeoLocationState>(null);
-    const [myReadableLocation, setMyReadableLocation] =
-        useState<TReadableLocationState>(null);
-
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
-    useGetMyGeoLocation({
-        setError,
-        setMyGeoLocation,
-        setLoading,
-    });
-
-    useGetMyReadableLocation({
-        myGeoLocation,
-        myReadableLocation,
-        setError,
-        setMyReadableLocation,
-        setLoading,
-    });
-
-    const myLocation: TLocationState =
-        myGeoLocation && myReadableLocation
-            ? {
+    const myLocation =
+        !myGeoLocation || !myReadableLocation
+            ? null
+            : {
                   ...myGeoLocation,
                   ...myReadableLocation,
-              }
-            : null;
+              };
 
-    return { myLocation, loading, error };
+    return {
+        myLocation,
+        loading,
+        error,
+    };
 };
