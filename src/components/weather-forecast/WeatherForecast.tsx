@@ -7,6 +7,7 @@ import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 
 import { useWeatherForecast } from './hooks';
+import { getTime, getDate } from './utils/date.utils';
 
 export default function WeatherForecast({
     city,
@@ -34,6 +35,8 @@ export default function WeatherForecast({
         <VStack space={STYLE_VARIABLES.smSpacing}>
             <Text>{city}</Text>
             <Text>{country}</Text>
+            <Text>{getTime(weatherForecast.timezone)}</Text>
+            <Text>{getDate(weatherForecast.timezone)}</Text>
             <Text>{weatherForecast.current.temp}</Text>
         </VStack>
     );
