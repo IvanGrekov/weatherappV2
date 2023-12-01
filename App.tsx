@@ -10,8 +10,8 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider, StatusBar, Box } from 'native-base';
 
-import AppContent from './src/components/app-content/AppContent';
 import { STYLE_VARIABLES } from './src/constants/style';
+import Routes from './src/routes';
 
 function App(): JSX.Element {
     return (
@@ -23,7 +23,7 @@ function App(): JSX.Element {
                         backgroundColor={STYLE_VARIABLES.white}
                     />
                     <Box style={styles.appWrapper}>
-                        <AppContent />
+                        <Routes />
                     </Box>
                 </SafeAreaView>
             </NativeBaseProvider>

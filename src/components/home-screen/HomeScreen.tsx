@@ -3,9 +3,9 @@ import { useMyGeoLocation } from '../../hooks/myLocation.hooks';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
 import ScreenContainer from '../screen-container/ScreenContainer';
-import WeatherForecast from '../weather-forecats/WeatherForecast';
+import WeatherForecast from '../weather-forecast/WeatherForecast';
 
-export default function AppContent(): JSX.Element {
+export default function HomeScreen(): JSX.Element {
     const { myLocation, loading, error } = useMyGeoLocation();
     const location = myLocation || DEFAULT_LOCATION;
 
