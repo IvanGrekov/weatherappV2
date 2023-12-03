@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { Box } from 'native-base';
 
-import { STYLE_VARIABLES } from '../../constants/style';
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 
 export default function ScreenContainer({
     children,

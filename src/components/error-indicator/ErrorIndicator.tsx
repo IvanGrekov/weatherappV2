@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { Text } from 'native-base';
 
-import { STYLE_VARIABLES } from '../../constants/style';
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 import IndicatorWrapper from '../indicator-wrapper/IndicatorWrapper';
 
 interface IErrorIndicatorProps {

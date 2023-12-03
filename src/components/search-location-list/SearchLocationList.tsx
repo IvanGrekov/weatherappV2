@@ -2,8 +2,7 @@ import { List } from 'native-base';
 
 import { TLocation } from '../../types/location.types';
 import EmptyStateIndicator from '../empty-state-indicator/EmptyStateIndicator';
-
-import SearchLocationListItem from './SearchLocationListItem';
+import LocationListItem from '../location-list-item/LocationListItem';
 
 interface ISearchLocationListProps {
     locations: TLocation[];
@@ -24,7 +23,7 @@ export default function SearchLocationList({
 
                 return (
                     <List.Item key={key}>
-                        <SearchLocationListItem location={location} />
+                        <LocationListItem location={location} />
                     </List.Item>
                 );
             })}

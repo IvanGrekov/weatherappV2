@@ -1,6 +1,6 @@
 import { Input, SearchIcon } from 'native-base';
 
-import { STYLE_VARIABLES } from '../../constants/style';
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 
 interface ISearchFieldProps {
     value: string;

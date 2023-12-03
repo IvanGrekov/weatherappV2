@@ -1,9 +1,10 @@
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
-import { Pressable, Text } from 'native-base';
+import { Pressable } from 'native-base';
 
 import { useMyLocationStore } from '../../stores/my-location';
 import { ERouteNames, TRootTabsParamList } from '../../types/routes.types';
+import LocationListItemContent from '../location-list-item/LocationListItemContent';
 
 function MyLocationSection(): JSX.Element | null {
     const { navigate } = useNavigation<NavigationProp<TRootTabsParamList>>();
@@ -17,11 +18,9 @@ function MyLocationSection(): JSX.Element | null {
         navigate(ERouteNames.HOME);
     };
 
-    const { name, country } = myLocationStore.myLocation;
-
     return (
         <Pressable onPress={onPress}>
-            <Text>{`${name}, ${country}`}</Text>
+            <LocationListItemContent location={myLocationStore.myLocation} />
         </Pressable>
     );
 }

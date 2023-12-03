@@ -1,6 +1,6 @@
 import { ActivityIndicator } from 'react-native';
 
-import { STYLE_VARIABLES } from '../../constants/style';
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 import IndicatorWrapper from '../indicator-wrapper/IndicatorWrapper';
 
 interface ILoadingIndicatorProps {

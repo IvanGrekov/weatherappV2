@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { observer } from 'mobx-react-lite';
 
-import { DEFAULT_LOCATION } from '../../constants/location';
+import { DEFAULT_LOCATION } from '../../constants/location.constants';
 import { useMyLocationStore } from '../../stores/my-location';
 import { TRootTabScreenProps, ERouteNames } from '../../types/routes.types';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';

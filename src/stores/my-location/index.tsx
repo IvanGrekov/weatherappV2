@@ -1,9 +1,11 @@
 import { PropsWithChildren, createContext, useContext } from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { makeObservable, runInAction, observable, action } from 'mobx';
 
 import { getMyGeoLocation } from '../../api/myGeoLocation';
 import { getReadableLocation } from '../../api/readableLocation';
+import { ASYNC_STORAGE_MY_LOCATION_KEY } from '../../constants/asyncStorage.constants';
 import { IApiError } from '../../types/api.types';
 import {
     TLocation,
@@ -11,6 +13,7 @@ import {
     IReadableLocation,
 } from '../../types/location.types';
 import { getLocationCacheKey } from '../../utils/cache.utils';
+import { setMyLocationToAsyncStorage } from '../../utils/myLocation.utils';
 
 interface ISetLocationFromQueriesArgs {
     geoLocationQueryResult: IGeoLocation;
@@ -34,6 +37,24 @@ class MyLocation {
         });
     }
 
+    private async getMyLocationFromAsyncStorage(): Promise<TLocation | null> {
+        try {
+            const value = await AsyncStorage.getItem(
+                ASYNC_STORAGE_MY_LOCATION_KEY,
+            );
+
+            if (value) {
+                return JSON.parse(value) as TLocation;
+            }
+
+            return null;
+        } catch (error) {
+            console.warn(error);
+
+            return null;
+        }
+    }
+
     private setCachedLocation(key: string): void {
         const cachedLocation = this.locationsCache.get(key) as TLocation;
         this.loading = false;
@@ -55,12 +76,22 @@ class MyLocation {
             };
             this.locationsCache.set(cacheKey, location);
             this.myLocation = location;
+            setMyLocationToAsyncStorage(location);
         }
     }
 
     async getMyLocation(): Promise<void> {
         this.loading = true;
         this.error = '';
+
+        const myLocationFromAsyncStorage =
+            await this.getMyLocationFromAsyncStorage();
+        if (myLocationFromAsyncStorage) {
+            return runInAction(() => {
+                this.loading = false;
+                this.myLocation = myLocationFromAsyncStorage;
+            });
+        }
 
         const geoLocationQueryResult = await getMyGeoLocation();
         const isError = 'errorMessage' in geoLocationQueryResult;

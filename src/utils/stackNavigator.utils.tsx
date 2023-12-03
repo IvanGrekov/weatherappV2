@@ -1,7 +1,7 @@
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 
 import SearchButton from '../components/search-button/SearchButton';
-import { STYLE_VARIABLES } from '../constants/style';
+import { STYLE_VARIABLES } from '../constants/style.constants';
 
 export const getStackNavigationOptions = (): NativeStackNavigationOptions => {
     return {
