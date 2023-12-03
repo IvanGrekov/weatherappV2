@@ -1,9 +1,10 @@
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
-import { Pressable } from 'native-base';
+import { Pressable, List } from 'native-base';
 
 import { useMyLocationStore } from '../../stores/my-location';
 import { ERouteNames, TRootTabsParamList } from '../../types/routes.types';
+import LocationList from '../location-list/LocationList';
 import LocationListItemContent from '../location-list-item/LocationListItemContent';
 import SectionTitle from '../section-title/SectionTitle';
 
@@ -22,11 +23,16 @@ function MyLocationSection(): JSX.Element | null {
     return (
         <>
             <SectionTitle>My Location</SectionTitle>
-            <Pressable onPress={onPress}>
-                <LocationListItemContent
-                    location={myLocationStore.myLocation}
-                />
-            </Pressable>
+
+            <LocationList>
+                <List.Item>
+                    <Pressable onPress={onPress}>
+                        <LocationListItemContent
+                            location={myLocationStore.myLocation}
+                        />
+                    </Pressable>
+                </List.Item>
+            </LocationList>
         </>
     );
 }
