@@ -21,7 +21,7 @@ export const getHomeScreenOptions = (): NativeStackNavigationOptions => {
 
 export const getSearchScreenOptions = (): NativeStackNavigationOptions => {
     return {
-        title: 'My Locations',
+        title: 'Locations',
         headerBackTitleVisible: false,
     };
 };

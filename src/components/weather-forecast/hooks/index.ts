@@ -8,7 +8,7 @@ import { getWeatherForecast } from '../utils/getWeatherForecast.utils';
 
 type TUseWeatherForecast = (args: IGeoLocation) => {
     weatherForecast: TWeatherForecastState;
-    loading: boolean;
+    isLoading: boolean;
     error: string;
 };
 
@@ -20,7 +20,7 @@ export const useWeatherForecast: TUseWeatherForecast = ({
 }) => {
     const [weatherForecast, setWeatherForecast] =
         useState<TWeatherForecastState>(null);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export const useWeatherForecast: TUseWeatherForecast = ({
 
     return {
         weatherForecast,
-        loading,
+        isLoading,
         error,
     };
 };

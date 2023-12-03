@@ -10,15 +10,15 @@ import { useWeatherForecast } from './hooks';
 import { getTime, getDate } from './utils/date.utils';
 
 export default function WeatherForecast({
-    city,
+    name,
     country,
     ...geoLocationProps
 }: TLocation): JSX.Element {
-    const { weatherForecast, loading, error } =
+    const { weatherForecast, isLoading, error } =
         useWeatherForecast(geoLocationProps);
 
-    if (loading) {
-        return <LoadingIndicator isLoading={loading} />;
+    if (isLoading) {
+        return <LoadingIndicator isLoading={isLoading} />;
     }
 
     if (error) {
@@ -33,7 +33,7 @@ export default function WeatherForecast({
 
     return (
         <VStack space={STYLE_VARIABLES.smSpacing}>
-            <Text>{city}</Text>
+            <Text>{name}</Text>
             <Text>{country}</Text>
             <Text>{getTime(weatherForecast.timezone)}</Text>
             <Text>{getDate(weatherForecast.timezone)}</Text>

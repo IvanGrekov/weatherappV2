@@ -11,7 +11,7 @@ export const DEFAULT_GEO_LOCATION: IGeoLocation = {
 
 export const DEFAULT_READABLE_LOCATION: IReadableLocation = {
     country: 'Ukraine',
-    city: 'Kyiv',
+    name: 'Kyiv',
 };
 
 export const DEFAULT_LOCATION: TLocation = {

@@ -17,11 +17,11 @@ function MyLocationSection(): JSX.Element | null {
         navigate(ERouteNames.HOME);
     };
 
-    const { city, country } = myLocationStore.myLocation;
+    const { name, country } = myLocationStore.myLocation;
 
     return (
         <Pressable onPress={onPress}>
-            <Text>{`${city}, ${country}`}</Text>
+            <Text>{`${name}, ${country}`}</Text>
         </Pressable>
     );
 }

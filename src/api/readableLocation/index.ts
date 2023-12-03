@@ -21,10 +21,11 @@ export const getReadableLocation: TGetReadableLocation = async ({
             throw parsedResponse.error;
         }
 
-        const { city, state, country } = parsedResponse.address;
+        const { city, town, municipality, state, country } =
+            parsedResponse.address;
 
         return {
-            city,
+            name: municipality || town || city,
             state,
             country,
         };
