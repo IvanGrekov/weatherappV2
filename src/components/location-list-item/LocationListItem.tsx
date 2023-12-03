@@ -1,9 +1,10 @@
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Pressable } from 'native-base';
 
+import { useMyLocationStore } from '../../stores/my-location';
 import { TLocation } from '../../types/location.types';
 import { TRootTabsParamList, ERouteNames } from '../../types/routes.types';
-import { setMyLocationToAsyncStorage } from '../../utils/myLocation.utils';
+import { updateLocationsHistoryAsyncStorage } from '../../utils/locations.utils';
 
 import LocationListItemContent from './LocationListItemContent';
 
@@ -15,9 +16,11 @@ export default function LocationListItem({
     location,
 }: ILocationListItemProps): JSX.Element {
     const navigation = useNavigation<NavigationProp<TRootTabsParamList>>();
+    const myLocationStore = useMyLocationStore();
 
     const onPress = (): void => {
-        setMyLocationToAsyncStorage(location);
+        myLocationStore.setMyLocation(location);
+        updateLocationsHistoryAsyncStorage(location);
         navigation.navigate(ERouteNames.HOME, {
             location,
         });

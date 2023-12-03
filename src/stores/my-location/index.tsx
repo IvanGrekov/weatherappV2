@@ -13,7 +13,10 @@ import {
     IReadableLocation,
 } from '../../types/location.types';
 import { getLocationCacheKey } from '../../utils/cache.utils';
-import { setMyLocationToAsyncStorage } from '../../utils/myLocation.utils';
+import {
+    setMyLocationToAsyncStorage,
+    updateLocationsHistoryAsyncStorage,
+} from '../../utils/locations.utils';
 
 interface ISetLocationFromQueriesArgs {
     geoLocationQueryResult: IGeoLocation;
@@ -34,6 +37,7 @@ class MyLocation {
             loading: observable,
             error: observable,
             getMyLocation: action,
+            setMyLocation: action,
         });
     }
 
@@ -77,6 +81,7 @@ class MyLocation {
             this.locationsCache.set(cacheKey, location);
             this.myLocation = location;
             setMyLocationToAsyncStorage(location);
+            updateLocationsHistoryAsyncStorage(location);
         }
     }
 
@@ -117,6 +122,11 @@ class MyLocation {
                 cacheKey,
             }),
         );
+    }
+
+    setMyLocation(location: TLocation): void {
+        this.myLocation = location;
+        setMyLocationToAsyncStorage(location);
     }
 }
 

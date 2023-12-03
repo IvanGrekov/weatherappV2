@@ -16,8 +16,12 @@ export default function LocationListItemContent({
             <Text>{name}</Text>
 
             <HStack>
-                <Text>{state}</Text>
-                <Text> · </Text>
+                {!!state && (
+                    <>
+                        <Text>{state}</Text>
+                        <Text> · </Text>
+                    </>
+                )}
                 <Text>{country}</Text>
             </HStack>
         </VStack>

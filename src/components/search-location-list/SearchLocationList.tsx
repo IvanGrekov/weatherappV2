@@ -1,7 +1,8 @@
 import { List } from 'native-base';
 
 import { TLocation } from '../../types/location.types';
-import EmptyStateIndicator from '../empty-state-indicator/EmptyStateIndicator';
+import { getLocationListItemKey } from '../../utils/locations.utils';
+import LocationList from '../location-list/LocationList';
 import LocationListItem from '../location-list-item/LocationListItem';
 
 interface ISearchLocationListProps {
@@ -10,16 +11,15 @@ interface ISearchLocationListProps {
 
 export default function SearchLocationList({
     locations,
-}: ISearchLocationListProps): JSX.Element {
+}: ISearchLocationListProps): JSX.Element | null {
     if (!locations.length) {
-        return <EmptyStateIndicator text="No locations found" />;
+        return null;
     }
 
     return (
-        <List>
+        <LocationList>
             {locations.map((location) => {
-                const { latitude, longitude } = location;
-                const key = `${latitude}-${longitude}`;
+                const key = getLocationListItemKey(location);
 
                 return (
                     <List.Item key={key}>
@@ -27,6 +27,6 @@ export default function SearchLocationList({
                     </List.Item>
                 );
             })}
-        </List>
+        </LocationList>
     );
 }

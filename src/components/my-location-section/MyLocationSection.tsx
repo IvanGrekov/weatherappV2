@@ -5,6 +5,7 @@ import { Pressable } from 'native-base';
 import { useMyLocationStore } from '../../stores/my-location';
 import { ERouteNames, TRootTabsParamList } from '../../types/routes.types';
 import LocationListItemContent from '../location-list-item/LocationListItemContent';
+import SectionTitle from '../section-title/SectionTitle';
 
 function MyLocationSection(): JSX.Element | null {
     const { navigate } = useNavigation<NavigationProp<TRootTabsParamList>>();
@@ -19,9 +20,14 @@ function MyLocationSection(): JSX.Element | null {
     };
 
     return (
-        <Pressable onPress={onPress}>
-            <LocationListItemContent location={myLocationStore.myLocation} />
-        </Pressable>
+        <>
+            <SectionTitle>My Location</SectionTitle>
+            <Pressable onPress={onPress}>
+                <LocationListItemContent
+                    location={myLocationStore.myLocation}
+                />
+            </Pressable>
+        </>
     );
 }
 

@@ -4,7 +4,34 @@ import { useIsFocused } from '@react-navigation/native';
 
 import useDebounce from '../../../hooks/debounce.hooks';
 import { TLocation } from '../../../types/location.types';
+import { getLocationsHistoryFromAsyncStorage } from '../../../utils/locations.utils';
 import { getLocationAutocomplete } from '../utils';
+
+type TUseLocationsHistory = () => {
+    locationsHistory: TLocation[];
+    isLoading: boolean;
+};
+
+export const useLocationsHistory: TUseLocationsHistory = () => {
+    const [isLoading, setIsLoading] = useState(true);
+    const [locationsHistory, setLocationsHistory] = useState<TLocation[]>([]);
+
+    useEffect(() => {
+        getLocationsHistoryFromAsyncStorage()
+            .then((locations) => {
+                setLocationsHistory(locations);
+                setIsLoading(false);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
+    return {
+        locationsHistory,
+        isLoading,
+    };
+};
 
 type TUseSearchLocation = () => {
     query: string;
