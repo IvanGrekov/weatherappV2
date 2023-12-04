@@ -13,7 +13,7 @@ export default function SearchButton(): JSX.Element {
 
     return (
         <IconButton
-            icon={<SearchIcon color={STYLE_VARIABLES.black} />}
+            icon={<SearchIcon size="lg" color={STYLE_VARIABLES.fgColor} />}
             variant="ghost"
             onPress={onClick}
         />

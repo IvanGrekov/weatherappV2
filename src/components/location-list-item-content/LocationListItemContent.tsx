@@ -1,5 +1,8 @@
+import { StyleSheet } from 'react-native';
+
 import { VStack, HStack, Text } from 'native-base';
 
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { TLocation } from '../../types/location.types';
 
 interface ILocationListItemContentProps {
@@ -13,17 +16,27 @@ export default function LocationListItemContent({
 
     return (
         <VStack>
-            <Text>{name}</Text>
+            <Text style={styles.name}>{name}</Text>
 
             <HStack>
                 {!!state && (
                     <>
-                        <Text>{state}</Text>
+                        <Text style={styles.caption}>{state}</Text>
                         <Text> · </Text>
                     </>
                 )}
-                <Text>{country}</Text>
+                <Text style={styles.caption}>{country}</Text>
             </HStack>
         </VStack>
     );
 }
+
+const styles = StyleSheet.create({
+    name: {
+        marginBottom: STYLE_VARIABLES.smSpacing,
+        fontSize: STYLE_VARIABLES.smFontSize,
+    },
+    caption: {
+        fontSize: STYLE_VARIABLES.xsFontSize,
+    },
+});

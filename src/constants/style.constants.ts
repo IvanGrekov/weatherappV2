@@ -1,5 +1,7 @@
 import { extendTheme } from 'native-base';
 
+const SECONDARY_COLOR = '#164863';
+
 const COLORS = {
     primary: {
         900: '#a0e3f2',
@@ -8,10 +10,13 @@ const COLORS = {
         900: 'rgba(160, 227, 242, 0.7)',
     },
     secondary: {
-        900: '#164863',
+        900: SECONDARY_COLOR,
     },
     secondaryOpacity: {
         900: 'rgba(22, 72, 99, 0.7)',
+    },
+    secondaryInvisible: {
+        900: 'rgba(22, 72, 99, 0.2)',
     },
     redOpacity: {
         900: 'rgba(244, 80, 80, 0.7)',
@@ -22,23 +27,35 @@ const COLORS = {
     white: {
         900: '#fafafa',
     },
+    text: {
+        900: SECONDARY_COLOR,
+        800: SECONDARY_COLOR,
+        700: SECONDARY_COLOR,
+        600: SECONDARY_COLOR,
+        500: SECONDARY_COLOR,
+        400: SECONDARY_COLOR,
+        300: SECONDARY_COLOR,
+        200: SECONDARY_COLOR,
+        100: SECONDARY_COLOR,
+        50: SECONDARY_COLOR,
+    },
 };
 
 const FONT_SIZES = {
-    '2xs': 8,
-    xs: 10,
-    sm: 12,
-    md: 14,
-    lg: 16,
-    xl: 18,
-    '2xl': 20,
-    '3xl': 24,
-    '4xl': 30,
-    '5xl': 36,
-    '6xl': 48,
-    '7xl': 60,
-    '8xl': 72,
-    '9xl': 96,
+    '2xs': 10,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+    '5xl': 48,
+    '6xl': 60,
+    '7xl': 72,
+    '8xl': 96,
+    '9xl': 128,
 };
 
 const SIZE = {
@@ -112,6 +129,7 @@ export const STYLE_VARIABLES = {
     bgOpacity: COLORS.primaryOpacity[900],
     fgColor: COLORS.secondary[900],
     fgOpacity: COLORS.secondaryOpacity[900],
+    fgInvisible: COLORS.secondaryInvisible[900],
 
     red: THEME.colors.rose[600],
     redOpacity: COLORS.redOpacity[900],
@@ -141,6 +159,7 @@ export const STYLE_VARIABLES = {
     smSpacing: SIZE['0.5'],
     xsSpacing: SIZE.px,
 
+    xsFontSize: FONT_SIZES.xs,
     smFontSize: FONT_SIZES.md,
     mdFontSize: FONT_SIZES.lg,
     lgFontSize: FONT_SIZES.xl,

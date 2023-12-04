@@ -18,12 +18,12 @@ export default function SearchField({
             size="2xl"
             variant="rounded"
             colorScheme="black"
-            borderColor={STYLE_VARIABLES.black}
-            placeholderTextColor={STYLE_VARIABLES.blackOpacity}
+            borderColor={STYLE_VARIABLES.fgColor}
+            placeholderTextColor={STYLE_VARIABLES.fgColor}
             InputRightElement={
                 <SearchIcon
                     size="lg"
-                    color={STYLE_VARIABLES.black}
+                    color={STYLE_VARIABLES.fgColor}
                     mr={STYLE_VARIABLES.smSpacing}
                 />
             }

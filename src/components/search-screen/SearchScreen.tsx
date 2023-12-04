@@ -1,5 +1,8 @@
+import { StyleSheet } from 'react-native';
+
 import { ScrollView, VStack } from 'native-base';
 
+import { STYLE_VARIABLES } from '../../constants/style.constants';
 import EmptyStateIndicator from '../empty-state-indicator/EmptyStateIndicator';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -30,22 +33,32 @@ export default function SearchScreen(): JSX.Element {
                 <EmptyStateIndicator text="No locations found" />
             )}
 
-            <SearchField value={query} onChangeText={onChange} />
+            <VStack
+                space={STYLE_VARIABLES.mdSpacing}
+                style={styles.contentWrapper}
+            >
+                <SearchField value={query} onChangeText={onChange} />
 
-            <ScrollView>
-                <VStack>
+                <ScrollView>
                     {!query && (
-                        <>
+                        <VStack space={STYLE_VARIABLES.mdSpacing}>
                             <MyLocationSection />
                             <LocationHistoryList locations={locationsHistory} />
-                        </>
+                        </VStack>
                     )}
 
                     {shouldShowSearchList && (
                         <SearchLocationList locations={data} />
                     )}
-                </VStack>
-            </ScrollView>
+                </ScrollView>
+            </VStack>
         </ScreenContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    contentWrapper: {
+        padding: STYLE_VARIABLES.xsPadding,
+        paddingVertical: STYLE_VARIABLES.smPadding,
+    },
+});

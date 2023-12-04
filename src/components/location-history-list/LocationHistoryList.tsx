@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import { List } from 'native-base';
 
 import { TLocation } from '../../types/location.types';
 import { getLocationListItemKey } from '../../utils/locations.utils';
 import LocationList from '../location-list/LocationList';
-import LocationListItem from '../location-list-item/LocationListItem';
+import LocationListItem from '../location-list/LocationListItem';
+import PressableLocationItem from '../pressable-location-item/PressableLocationItem';
 import SectionTitle from '../section-title/SectionTitle';
 
 import { useGetFilteredLocationsHistory } from './hooks';
@@ -31,9 +31,9 @@ function LocationHistoryList({
                     const key = getLocationListItemKey(location);
 
                     return (
-                        <List.Item key={key}>
-                            <LocationListItem location={location} />
-                        </List.Item>
+                        <LocationListItem key={key}>
+                            <PressableLocationItem location={location} />
+                        </LocationListItem>
                     );
                 })}
             </LocationList>

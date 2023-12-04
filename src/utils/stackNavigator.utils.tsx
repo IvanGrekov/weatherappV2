@@ -5,7 +5,7 @@ import { STYLE_VARIABLES } from '../constants/style.constants';
 
 export const getStackNavigationOptions = (): NativeStackNavigationOptions => {
     return {
-        headerTintColor: STYLE_VARIABLES.black,
+        headerTintColor: STYLE_VARIABLES.fgColor,
         headerStyle: {
             backgroundColor: STYLE_VARIABLES.bgColor,
         },

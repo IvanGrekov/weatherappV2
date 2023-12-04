@@ -1,9 +1,8 @@
-import { List } from 'native-base';
-
 import { TLocation } from '../../types/location.types';
 import { getLocationListItemKey } from '../../utils/locations.utils';
 import LocationList from '../location-list/LocationList';
-import LocationListItem from '../location-list-item/LocationListItem';
+import LocationListItem from '../location-list/LocationListItem';
+import PressableLocationItem from '../pressable-location-item/PressableLocationItem';
 
 interface ISearchLocationListProps {
     locations: TLocation[];
@@ -22,9 +21,9 @@ export default function SearchLocationList({
                 const key = getLocationListItemKey(location);
 
                 return (
-                    <List.Item key={key}>
-                        <LocationListItem location={location} />
-                    </List.Item>
+                    <LocationListItem key={key}>
+                        <PressableLocationItem location={location} />
+                    </LocationListItem>
                 );
             })}
         </LocationList>

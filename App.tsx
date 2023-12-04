@@ -10,14 +10,14 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider, StatusBar, Box } from 'native-base';
 
-import { STYLE_VARIABLES } from './src/constants/style.constants';
+import { STYLE_VARIABLES, THEME } from './src/constants/style.constants';
 import Routes from './src/routes';
 import { MyLocationStoreProvider } from './src/stores/my-location';
 
 function App(): JSX.Element {
     return (
         <NavigationContainer>
-            <NativeBaseProvider>
+            <NativeBaseProvider theme={THEME}>
                 <MyLocationStoreProvider>
                     <SafeAreaView>
                         <StatusBar
