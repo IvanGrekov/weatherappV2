@@ -127,19 +127,30 @@ export const THEME = extendTheme({
 export const STYLE_VARIABLES = {
     bgColor: COLORS.primary[900],
     bgOpacity: COLORS.primaryOpacity[900],
+
     fgColor: COLORS.secondary[900],
     fgOpacity: COLORS.secondaryOpacity[900],
     fgInvisible: COLORS.secondaryInvisible[900],
 
     red: THEME.colors.rose[600],
     redOpacity: COLORS.redOpacity[900],
+
     gray: THEME.colors.gray[300],
     grayOpacity: THEME.colors.gray[400],
+
     white: THEME.colors.white[900],
+
     black: THEME.colors.gray[900],
     blackOpacity: 'rgba(0, 0, 0, 0.3)',
     blackInvisible: 'rgba(0, 0, 0, 0.1)',
-    blue: THEME.colors.info[900],
+
+    blue: THEME.colors.info[500],
+    darkBlue: THEME.colors.info[800],
+
+    green: THEME.colors.green[500],
+    darkGreen: THEME.colors.green[700],
+
+    orange: THEME.colors.orange[400],
 
     mdPadding: SIZE['4.5'],
     smPadding: SIZE['3.5'],
@@ -165,5 +176,5 @@ export const STYLE_VARIABLES = {
     mdFontSize: FONT_SIZES.lg,
     lgFontSize: FONT_SIZES.xl,
     xlFontSize: FONT_SIZES['3xl'],
-    xxlFontSize: FONT_SIZES['5xl'],
+    xxlFontSize: FONT_SIZES['7xl'],
 };

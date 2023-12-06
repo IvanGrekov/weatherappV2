@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { VStack, Text, HStack } from 'native-base';
+import { VStack, HStack } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { TLocation } from '../../types/location.types';
+import CurrentWeather from '../current-weather/CurrentWeather';
 import EmptyStateIndicator from '../empty-state-indicator/EmptyStateIndicator';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -29,10 +30,10 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
         );
     }
 
-    const { timezone } = weatherForecast;
+    const { timezone, current } = weatherForecast;
 
     return (
-        <VStack space={STYLE_VARIABLES.smSpacing} style={styles.container}>
+        <VStack space={STYLE_VARIABLES.mdSpacing} style={styles.container}>
             <HStack
                 space={STYLE_VARIABLES.smSpacing}
                 style={styles.locationInfo}
@@ -41,7 +42,7 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
                 <WeatherForecastCurrentTime timezone={timezone} />
             </HStack>
 
-            <Text>{weatherForecast.current.temp}</Text>
+            <CurrentWeather {...current} />
         </VStack>
     );
 }
