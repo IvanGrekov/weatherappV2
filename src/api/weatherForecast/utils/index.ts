@@ -29,7 +29,7 @@ const convertApiCurrentWeatherToCurrentWeather: TConvertApiCurrentWeatherToCurre
             pressure,
             visibility,
             windSpeed: wind_speed,
-            weatherDescription: weather,
+            weatherDescription: weather[0],
         };
     };
 
@@ -68,7 +68,7 @@ const convertApiDailyWeatherToDailyWeather: TConvertApiDailyWeatherToDailyWeathe
             humidity,
             pressure,
             windSpeed: wind_speed,
-            weatherDescription: weather,
+            weatherDescription: weather[0],
         };
     };
 

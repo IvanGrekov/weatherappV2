@@ -21,12 +21,10 @@ export default function CurrentTemperature({
     const feelsLikeTemperature = roundTemperature(feelsLike);
     const feelsLikeColor = getTemperatureColor(feelsLikeTemperature);
 
-    Badge;
-
     return (
         <VStack style={styles.tempContainer}>
             <Text color={tempColor} style={styles.temperature}>
-                {temperature}
+                {`${temperature}°`}
             </Text>
 
             <Badge
@@ -35,7 +33,7 @@ export default function CurrentTemperature({
                 _text={styles.feelsLike}
                 style={styles.feelsLikeBadge}
             >
-                {`Feels like ${feelsLikeTemperature}`}
+                {`Feels like ${feelsLikeTemperature}°`}
             </Badge>
         </VStack>
     );

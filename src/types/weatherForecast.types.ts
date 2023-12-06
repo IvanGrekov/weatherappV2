@@ -73,7 +73,7 @@ export interface IApiCurrentWeather {
     humidity: number;
     visibility: number;
     wind_speed: number;
-    weather: IWeatherDescription;
+    weather: IWeatherDescription[];
 }
 
 export interface IApiDailyWeather {
@@ -92,7 +92,7 @@ export interface IApiDailyWeather {
     pressure: number;
     humidity: number;
     wind_speed: number;
-    weather: IWeatherDescription;
+    weather: IWeatherDescription[];
 }
 
 export interface IApiWeatherForecast {

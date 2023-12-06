@@ -177,4 +177,6 @@ export const STYLE_VARIABLES = {
     lgFontSize: FONT_SIZES.xl,
     xlFontSize: FONT_SIZES['3xl'],
     xxlFontSize: FONT_SIZES['7xl'],
+
+    weatherIconSize: SIZE['12'],
 };
