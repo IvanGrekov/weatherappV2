@@ -159,7 +159,8 @@ export const STYLE_VARIABLES = {
     smSpacing: SIZE['0.5'],
     xsSpacing: SIZE.px,
 
-    xsFontSize: FONT_SIZES.xs,
+    xxsFontSize: FONT_SIZES.xs,
+    xsFontSize: FONT_SIZES.sm,
     smFontSize: FONT_SIZES.md,
     mdFontSize: FONT_SIZES.lg,
     lgFontSize: FONT_SIZES.xl,

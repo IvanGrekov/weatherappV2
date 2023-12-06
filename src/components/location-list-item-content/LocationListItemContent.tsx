@@ -1,42 +1,36 @@
-import { StyleSheet } from 'react-native';
-
 import { VStack, HStack, Text } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
-import { TLocation } from '../../types/location.types';
+import { IReadableLocation } from '../../types/location.types';
 
 interface ILocationListItemContentProps {
-    location: TLocation;
+    location: IReadableLocation;
+    flexDirection?: 'column' | 'column-reverse';
+    nameFontSize?: number;
+    captionFontSize?: number;
 }
 
 export default function LocationListItemContent({
     location,
+    flexDirection = 'column',
+    nameFontSize = STYLE_VARIABLES.smFontSize,
+    captionFontSize = STYLE_VARIABLES.xxsFontSize,
 }: ILocationListItemContentProps): JSX.Element {
     const { name, state, country } = location;
 
     return (
-        <VStack>
-            <Text style={styles.name}>{name}</Text>
+        <VStack flexDirection={flexDirection} space={STYLE_VARIABLES.xsSpacing}>
+            <Text fontSize={nameFontSize}>{name}</Text>
 
             <HStack>
                 {!!state && (
                     <>
-                        <Text style={styles.caption}>{state}</Text>
+                        <Text fontSize={captionFontSize}>{state}</Text>
                         <Text> · </Text>
                     </>
                 )}
-                <Text style={styles.caption}>{country}</Text>
+                <Text fontSize={captionFontSize}>{country}</Text>
             </HStack>
         </VStack>
     );
 }
-
-const styles = StyleSheet.create({
-    name: {
-        marginBottom: STYLE_VARIABLES.smSpacing,
-        fontSize: STYLE_VARIABLES.smFontSize,
-    },
-    caption: {
-        fontSize: STYLE_VARIABLES.xsFontSize,
-    },
-});
