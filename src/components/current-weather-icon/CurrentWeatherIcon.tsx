@@ -3,16 +3,20 @@ import { StyleSheet } from 'react-native';
 import { VStack } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
-import { IWeatherDescription } from '../../types/weatherForecast.types';
+import { TWeatherIconCode } from '../../types/weatherForecast.types';
 import WeatherIcon from '../weather-icons/WeatherIcon';
 
-export default function CurrentWeatherDescription({
-    icon,
-}: IWeatherDescription): JSX.Element {
+interface ICurrentWeatherIconProps {
+    weatherIconCode: TWeatherIconCode;
+}
+
+export default function CurrentWeatherIcon({
+    weatherIconCode,
+}: ICurrentWeatherIconProps): JSX.Element {
     return (
         <VStack style={styles.container}>
             <WeatherIcon
-                weatherIconCode={icon}
+                weatherIconCode={weatherIconCode}
                 width={STYLE_VARIABLES.currentWeatherIconSize}
                 height={STYLE_VARIABLES.currentWeatherIconSize}
             />

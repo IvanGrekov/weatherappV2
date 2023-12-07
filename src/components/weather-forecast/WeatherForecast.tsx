@@ -33,7 +33,7 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
     const { timezone, current } = weatherForecast;
 
     return (
-        <VStack space={STYLE_VARIABLES.mdSpacing} style={styles.container}>
+        <VStack style={styles.container}>
             <HStack
                 space={STYLE_VARIABLES.smSpacing}
                 style={styles.locationInfo}

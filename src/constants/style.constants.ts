@@ -9,6 +9,9 @@ const COLORS = {
     primaryOpacity: {
         900: 'rgba(160, 227, 242, 0.7)',
     },
+    primaryInvisible: {
+        900: 'rgba(160, 227, 242, 0.5)',
+    },
     secondary: {
         900: SECONDARY_COLOR,
     },
@@ -129,6 +132,7 @@ export const THEME = extendTheme({
 export const STYLE_VARIABLES = {
     bgColor: COLORS.primary[900],
     bgOpacity: COLORS.primaryOpacity[900],
+    bgInvisible: COLORS.primaryInvisible[900],
 
     fgColor: COLORS.secondary[900],
     fgOpacity: COLORS.secondaryOpacity[900],
@@ -184,5 +188,5 @@ export const STYLE_VARIABLES = {
     xxlFontSize: FONT_SIZES['9xl'],
 
     weatherIconSize: SIZE['16'],
-    currentWeatherIconSize: SIZE['44'],
+    currentWeatherIconSize: SIZE['80'],
 };

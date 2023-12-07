@@ -4,8 +4,8 @@ import { HStack, VStack, Text } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { ICurrentWeather } from '../../types/weatherForecast.types';
-import CurrentTemperature from '../current-temperature/CurrentTemperature';
-import CurrentWeatherDescription from '../current-weather-description/CurrentWeatherDescription';
+import CurrentWeatherIcon from '../current-weather-icon/CurrentWeatherIcon';
+import CurrentWeatherMainInfo from '../current-weather-main-info/CurrentWeatherMainInfo';
 
 export default function CurrentWeather({
     temp,
@@ -16,12 +16,20 @@ export default function CurrentWeather({
     windSpeed,
     weatherDescription,
 }: ICurrentWeather): JSX.Element {
+    const { icon, description } = weatherDescription;
+
     return (
         <VStack space={STYLE_VARIABLES.mdSpacing}>
-            <HStack style={styles.mainInfoWrapper}>
-                <CurrentTemperature temp={temp} feelsLike={feelsLike} />
-                <CurrentWeatherDescription {...weatherDescription} />
-            </HStack>
+            <VStack style={styles.mainInfoWrapper}>
+                <CurrentWeatherIcon weatherIconCode={icon} />
+                <VStack style={styles.tempWrapper}>
+                    <CurrentWeatherMainInfo
+                        weatherDescription={description}
+                        temp={temp}
+                        feelsLike={feelsLike}
+                    />
+                </VStack>
+            </VStack>
 
             <HStack justifyContent="space-between">
                 <Text>{`${windSpeed} m/s`}</Text>
@@ -38,8 +46,15 @@ export default function CurrentWeather({
 
 const styles = StyleSheet.create({
     mainInfoWrapper: {
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        // paddingHorizontal: 60,
+        position: 'relative',
+        justifyContent: 'center',
+        marginTop: -15,
+    },
+    tempWrapper: {
+        height: '90%',
+        width: '100%',
+        justifyContent: 'center',
+        position: 'absolute',
+        backgroundColor: STYLE_VARIABLES.bgInvisible,
     },
 });

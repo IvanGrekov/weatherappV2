@@ -3,15 +3,21 @@ import { StyleSheet } from 'react-native';
 import { VStack, Text, Badge } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
-import { ICurrentWeather } from '../../types/weatherForecast.types';
+import {
+    ICurrentWeather,
+    IWeatherDescription,
+} from '../../types/weatherForecast.types';
 import {
     roundTemperature,
     getTemperatureColor,
 } from '../../utils/weather.utils';
 
-type TCurrentTemperatureProps = Pick<ICurrentWeather, 'temp' | 'feelsLike'>;
+type TCurrentTemperatureProps = Pick<ICurrentWeather, 'temp' | 'feelsLike'> & {
+    weatherDescription: IWeatherDescription['description'];
+};
 
-export default function CurrentTemperature({
+export default function CurrentWeatherMainInfo({
+    weatherDescription,
     temp,
     feelsLike,
 }: TCurrentTemperatureProps): JSX.Element {
@@ -22,7 +28,11 @@ export default function CurrentTemperature({
     const feelsLikeColor = getTemperatureColor(feelsLikeTemperature);
 
     return (
-        <VStack style={styles.tempContainer}>
+        <VStack style={styles.container}>
+            <Text color={tempColor} style={styles.description}>
+                {weatherDescription}
+            </Text>
+
             <Text color={tempColor} style={styles.temperature}>
                 {`${temperature}°`}
             </Text>
@@ -40,8 +50,14 @@ export default function CurrentTemperature({
 }
 
 const styles = StyleSheet.create({
-    tempContainer: {
+    container: {
         alignItems: 'center',
+    },
+    description: {
+        marginBottom: STYLE_VARIABLES.xlSpacing,
+        fontSize: STYLE_VARIABLES.lgFontSize,
+        fontWeight: 'bold',
+        textTransform: 'capitalize',
     },
     temperature: {
         fontSize: STYLE_VARIABLES.xxlFontSize,

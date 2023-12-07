@@ -4,8 +4,6 @@ import Svg, {
     Stop,
     Path,
     Circle,
-    Line,
-    Polyline,
 } from 'react-native-svg';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
@@ -59,77 +57,17 @@ export const SnowIcon = ({
                 transform="translate(3.72 67.08) rotate(-74.39)"
             />
 
-            <Line
-                x1="32.13"
-                x2="32.13"
-                y1="27.1"
-                y2="37.23"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="33.3 25.79 32.13 27.26 30.95 25.79"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="30.95 38.55 32.13 37.08 33.3 38.55"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Line
-                x1="36.51"
-                x2="27.74"
-                y1="29.63"
-                y2="34.7"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="38.24 30 36.38 29.71 37.06 27.96"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="26.01 34.34 27.87 34.62 27.19 36.38"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Line
-                x1="36.51"
-                x2="27.74"
-                y1="34.7"
-                y2="29.63"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="37.06 36.38 36.38 34.62 38.24 34.34"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-            <Polyline
-                points="27.19 27.96 27.87 29.71 26.01 30"
-                stroke="#9c9fa0"
-                strokeWidth={2}
-                strokeLinecap="round"
-            />
-
-            <Circle cx="26.5" cy="52.63" r="2" fill="#c4c4c4" />
-            <Circle cx="36.5" cy="55.63" r="1.5" fill="#e0e0e0" />
-            <Circle cx="18.5" cy="48.63" r="1.5" fill="#e0e0e0" />
+            <Circle cx="10.5" cy="50.63" r="1" fill="#fff" />
+            <Circle cx="12.5" cy="45.63" r="1.5" fill="#fff" />
+            <Circle cx="26.5" cy="52.63" r="2" fill="#fff" />
+            <Circle cx="36.5" cy="55.63" r="1.5" fill="#fff" />
+            <Circle cx="18.5" cy="48.63" r="1.5" fill="#fff" />
             <Circle cx="32.5" cy="48.63" r="1" fill="#fff" />
             <Circle cx="46.5" cy="55.63" r="1" fill="#fff" />
             <Circle cx="17.5" cy="55.63" r="1" fill="#fff" />
-            <Circle cx="42.5" cy="49.63" r="2" fill="#c4c4c4" />
+            <Circle cx="42.5" cy="49.63" r="2" fill="#fff" />
+            <Circle cx="50.5" cy="47.63" r="2" fill="#fff" />
+            <Circle cx="27.5" cy="58.63" r="1" fill="#fff" />
         </Svg>
     );
 };
