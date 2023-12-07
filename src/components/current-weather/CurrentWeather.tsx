@@ -5,8 +5,6 @@ import { HStack, VStack, Text } from 'native-base';
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { ICurrentWeather } from '../../types/weatherForecast.types';
 import CurrentTemperature from '../current-temperature/CurrentTemperature';
-import { ClearDayIcon, ClearNightIcon } from '../weather-icons/01';
-import { FewCloudsDayIcon, FewCloudsNightIcon } from '../weather-icons/02';
 
 export default function CurrentWeather({
     temp,
@@ -25,11 +23,6 @@ export default function CurrentWeather({
 
             <Text style={styles.weatherDescription}>{description}</Text>
 
-            <ClearDayIcon />
-            <ClearNightIcon />
-            <FewCloudsDayIcon />
-            <FewCloudsNightIcon />
-
             <HStack justifyContent="space-between">
                 <Text>{`${windSpeed} m/s`}</Text>
 
@@ -44,9 +37,6 @@ export default function CurrentWeather({
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // justifyContent: 'space-between',
-    },
     weatherDescription: {
         fontSize: STYLE_VARIABLES.mdFontSize,
         lineHeight: STYLE_VARIABLES.mdFontSize,
