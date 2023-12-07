@@ -55,7 +55,7 @@ const FONT_SIZES = {
     '6xl': 60,
     '7xl': 72,
     '8xl': 96,
-    '9xl': 128,
+    '9xl': 120,
 };
 
 const SIZE = {
@@ -79,8 +79,10 @@ const SIZE = {
     16: 64,
     20: 80,
     24: 96,
+    28: 112,
     32: 128,
     40: 160,
+    44: 170,
     48: 192,
     56: 224,
     64: 256,
@@ -152,6 +154,9 @@ export const STYLE_VARIABLES = {
 
     orange: THEME.colors.orange[400],
 
+    xxlPadding: SIZE['10'],
+    xlPadding: SIZE['8'],
+    lgPadding: SIZE['6'],
     mdPadding: SIZE['4.5'],
     smPadding: SIZE['3.5'],
     xsPadding: SIZE['2'],
@@ -176,7 +181,8 @@ export const STYLE_VARIABLES = {
     mdFontSize: FONT_SIZES.lg,
     lgFontSize: FONT_SIZES.xl,
     xlFontSize: FONT_SIZES['3xl'],
-    xxlFontSize: FONT_SIZES['7xl'],
+    xxlFontSize: FONT_SIZES['9xl'],
 
-    weatherIconSize: SIZE['12'],
+    weatherIconSize: SIZE['16'],
+    currentWeatherIconSize: SIZE['44'],
 };

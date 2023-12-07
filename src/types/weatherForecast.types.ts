@@ -1,6 +1,6 @@
 import { IGeoLocation } from './location.types';
 
-export type TWeatherIcon =
+export type TWeatherIconCode =
     | '01d'
     | '01n'
     | '02d'
@@ -23,7 +23,7 @@ export type TWeatherIcon =
 export interface IWeatherDescription {
     main: string;
     description: string;
-    icon: TWeatherIcon;
+    icon: TWeatherIconCode;
 }
 
 export interface ICurrentWeather {

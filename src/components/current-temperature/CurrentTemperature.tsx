@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         borderRadius: STYLE_VARIABLES.mdRadius,
     },
     feelsLike: {
-        fontSize: STYLE_VARIABLES.xsFontSize,
+        fontSize: STYLE_VARIABLES.smFontSize,
         color: STYLE_VARIABLES.bgColor,
     },
 });

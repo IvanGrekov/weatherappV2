@@ -5,6 +5,7 @@ import { HStack, VStack, Text } from 'native-base';
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { ICurrentWeather } from '../../types/weatherForecast.types';
 import CurrentTemperature from '../current-temperature/CurrentTemperature';
+import CurrentWeatherDescription from '../current-weather-description/CurrentWeatherDescription';
 
 export default function CurrentWeather({
     temp,
@@ -15,13 +16,12 @@ export default function CurrentWeather({
     windSpeed,
     weatherDescription,
 }: ICurrentWeather): JSX.Element {
-    const { description } = weatherDescription;
-
     return (
-        <VStack style={styles.container} space={STYLE_VARIABLES.mdSpacing}>
-            <CurrentTemperature temp={temp} feelsLike={feelsLike} />
-
-            <Text style={styles.weatherDescription}>{description}</Text>
+        <VStack space={STYLE_VARIABLES.mdSpacing}>
+            <HStack style={styles.mainInfoWrapper}>
+                <CurrentTemperature temp={temp} feelsLike={feelsLike} />
+                <CurrentWeatherDescription {...weatherDescription} />
+            </HStack>
 
             <HStack justifyContent="space-between">
                 <Text>{`${windSpeed} m/s`}</Text>
@@ -37,9 +37,9 @@ export default function CurrentWeather({
 }
 
 const styles = StyleSheet.create({
-    weatherDescription: {
-        fontSize: STYLE_VARIABLES.mdFontSize,
-        lineHeight: STYLE_VARIABLES.mdFontSize,
-        textTransform: 'capitalize',
+    mainInfoWrapper: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        // paddingHorizontal: 60,
     },
 });
