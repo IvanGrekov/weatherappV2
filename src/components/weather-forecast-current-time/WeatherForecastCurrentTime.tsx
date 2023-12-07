@@ -26,8 +26,12 @@ export default function WeatherForecastCurrentTime({
 
     return (
         <VStack style={styles.container}>
-            <Text>{getDate(timestamp)}</Text>
-            <Text style={styles.time}>{getTime(timestamp)}</Text>
+            <Text fontSize={STYLE_VARIABLES.smFontSize}>
+                {getDate(timestamp)}
+            </Text>
+            <Text fontSize={STYLE_VARIABLES.lgFontSize} fontWeight="bold">
+                {getTime(timestamp)}
+            </Text>
         </VStack>
     );
 }
@@ -37,11 +41,5 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
-    },
-    date: {
-        fontSize: STYLE_VARIABLES.xsFontSize,
-    },
-    time: {
-        fontSize: STYLE_VARIABLES.mdFontSize,
     },
 });

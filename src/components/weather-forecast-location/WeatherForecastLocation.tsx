@@ -9,8 +9,8 @@ export default function WeatherForecastLocation(
         <LocationListItemContent
             location={props}
             flexDirection="column-reverse"
-            nameFontSize={STYLE_VARIABLES.mdFontSize}
-            captionFontSize={STYLE_VARIABLES.xsFontSize}
+            nameFontSize={STYLE_VARIABLES.lgFontSize}
+            captionFontSize={STYLE_VARIABLES.smFontSize}
         />
     );
 }

@@ -20,7 +20,9 @@ export default function LocationListItemContent({
 
     return (
         <VStack flexDirection={flexDirection} space={STYLE_VARIABLES.xsSpacing}>
-            <Text fontSize={nameFontSize}>{name}</Text>
+            <Text fontSize={nameFontSize} fontWeight="bold">
+                {name}
+            </Text>
 
             <HStack>
                 {!!state && (

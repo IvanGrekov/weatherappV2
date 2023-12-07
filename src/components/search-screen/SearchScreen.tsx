@@ -33,13 +33,13 @@ export default function SearchScreen(): JSX.Element {
                 <EmptyStateIndicator text="No locations found" />
             )}
 
-            <VStack
-                space={STYLE_VARIABLES.mdSpacing}
-                style={styles.contentWrapper}
-            >
-                <SearchField value={query} onChangeText={onChange} />
+            <ScrollView>
+                <VStack
+                    space={STYLE_VARIABLES.mdSpacing}
+                    style={styles.contentWrapper}
+                >
+                    <SearchField value={query} onChangeText={onChange} />
 
-                <ScrollView>
                     {!query && (
                         <VStack space={STYLE_VARIABLES.mdSpacing}>
                             <MyLocationSection />
@@ -50,8 +50,8 @@ export default function SearchScreen(): JSX.Element {
                     {shouldShowSearchList && (
                         <SearchLocationList locations={data} />
                     )}
-                </ScrollView>
-            </VStack>
+                </VStack>
+            </ScrollView>
         </ScreenContainer>
     );
 }

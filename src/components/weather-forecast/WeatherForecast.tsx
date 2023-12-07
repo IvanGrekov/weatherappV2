@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { VStack, HStack } from 'native-base';
+import { ScrollView, VStack, HStack } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { TLocation } from '../../types/location.types';
@@ -33,17 +33,19 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
     const { timezone, current } = weatherForecast;
 
     return (
-        <VStack style={styles.container}>
-            <HStack
-                space={STYLE_VARIABLES.smSpacing}
-                style={styles.locationInfo}
-            >
-                <WeatherForecastLocation {...location} />
-                <WeatherForecastCurrentTime timezone={timezone} />
-            </HStack>
+        <ScrollView>
+            <VStack style={styles.container}>
+                <HStack
+                    space={STYLE_VARIABLES.smSpacing}
+                    style={styles.locationInfo}
+                >
+                    <WeatherForecastLocation {...location} />
+                    <WeatherForecastCurrentTime timezone={timezone} />
+                </HStack>
 
-            <CurrentWeather {...current} />
-        </VStack>
+                <CurrentWeather {...current} />
+            </VStack>
+        </ScrollView>
     );
 }
 
