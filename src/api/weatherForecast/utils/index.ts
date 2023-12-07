@@ -19,6 +19,7 @@ const convertApiCurrentWeatherToCurrentWeather: TConvertApiCurrentWeatherToCurre
         humidity,
         pressure,
         visibility,
+        wind_deg,
         wind_speed,
         weather,
     }) => {
@@ -28,6 +29,7 @@ const convertApiCurrentWeatherToCurrentWeather: TConvertApiCurrentWeatherToCurre
             humidity,
             pressure,
             visibility,
+            windDeg: wind_deg,
             windSpeed: wind_speed,
             weatherDescription: weather[0],
         };

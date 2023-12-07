@@ -1,6 +1,6 @@
 import { TWeatherIconCode } from '../../types/weatherForecast.types';
+import { IWeatherIconProps } from '../../types/weatherIcon.types';
 
-import { IWeatherIconProps } from './types';
 import { getWeatherIcon } from './utils';
 
 type TWeatherIconProps = IWeatherIconProps & {

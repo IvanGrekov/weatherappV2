@@ -1,20 +1,22 @@
 import { StyleSheet } from 'react-native';
 
-import { HStack, VStack, Text } from 'native-base';
+import { VStack, Box } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { ICurrentWeather } from '../../types/weatherForecast.types';
 import CurrentWeatherIcon from '../current-weather-icon/CurrentWeatherIcon';
 import CurrentWeatherMainInfo from '../current-weather-main-info/CurrentWeatherMainInfo';
+import CurrentWeatherMinorInfo from '../current-weather-minor-info/CurrentWeatherMinorInfo';
 
 export default function CurrentWeather({
+    weatherDescription,
     temp,
     feelsLike,
+    windDeg,
+    windSpeed,
+    visibility,
     humidity,
     pressure,
-    visibility,
-    windSpeed,
-    weatherDescription,
 }: ICurrentWeather): JSX.Element {
     const { icon, description } = weatherDescription;
 
@@ -31,15 +33,15 @@ export default function CurrentWeather({
                 </VStack>
             </VStack>
 
-            <HStack style={styles.minorInfoWrapper}>
-                <Text>{`${windSpeed} m/s`}</Text>
-
-                <Text>{`${visibility} m`}</Text>
-
-                <Text>{`${humidity}%`}</Text>
-
-                <Text>{`${pressure} hPa`}</Text>
-            </HStack>
+            <Box style={styles.minorInfoWrapper}>
+                <CurrentWeatherMinorInfo
+                    windSpeed={windSpeed}
+                    windDeg={windDeg}
+                    visibility={visibility}
+                    humidity={humidity}
+                    pressure={pressure}
+                />
+            </Box>
         </VStack>
     );
 }
@@ -51,10 +53,10 @@ const styles = StyleSheet.create({
         marginTop: -10,
     },
     tempWrapper: {
+        position: 'absolute',
         height: '90%',
         width: '100%',
         justifyContent: 'center',
-        position: 'absolute',
         backgroundColor: STYLE_VARIABLES.bgInvisible,
     },
     minorInfoWrapper: {

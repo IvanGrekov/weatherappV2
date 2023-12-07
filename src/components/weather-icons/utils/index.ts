@@ -1,4 +1,5 @@
 import { TWeatherIconCode } from '../../../types/weatherForecast.types';
+import { IWeatherIconProps } from '../../../types/weatherIcon.types';
 import { BrokenCloudsIcon } from '../BrokenCloudsIcon';
 import { ClearDayIcon, ClearNightIcon } from '../ClearIcon';
 import { FewCloudsDayIcon, FewCloudsNightIcon } from '../FewCloudsIcon';
@@ -8,7 +9,6 @@ import { ScatteredCloudsIcon } from '../ScatteredCloudsIcon';
 import { ShowerRainIcon } from '../ShowerRainIcon';
 import { SnowIcon } from '../SnowIcon';
 import { ThunderstormIcon } from '../ThunderstormIcon';
-import { IWeatherIconProps } from '../types';
 
 export const getWeatherIcon = (
     weatherIcon: TWeatherIconCode,

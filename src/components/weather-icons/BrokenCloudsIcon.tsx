@@ -1,8 +1,7 @@
 import Svg, { Defs, LinearGradient, Stop, Path } from 'react-native-svg';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
-
-import { IWeatherIconProps } from './types';
+import { IWeatherIconProps } from '../../types/weatherIcon.types';
 
 export const BrokenCloudsIcon = ({
     width = STYLE_VARIABLES.weatherIconSize,
@@ -26,12 +25,16 @@ export const BrokenCloudsIcon = ({
 
             <Path
                 fill="url(#linear-gradient)"
+                stroke="#cfcfcf"
+                strokeWidth="1px"
                 d="M41.3,18.9a17.49,17.49,0,0,0-15.47,9.32,13.75,13.75,0,1,0-6.92,25.62l22.39.06a17.5,17.5,0,0,0,0-35Z"
                 transform="scale(0.75) translate(22, -13)"
             />
 
             <Path
                 fill="url(#linear-gradient)"
+                stroke="#cfcfcf"
+                strokeWidth="1px"
                 d="M41.3,18.9a17.49,17.49,0,0,0-15.47,9.32,13.75,13.75,0,1,0-6.92,25.62l22.39.06a17.5,17.5,0,0,0,0-35Z"
                 transform="scale(0.9)"
             />

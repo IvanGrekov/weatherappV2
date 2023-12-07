@@ -8,8 +8,7 @@ import Svg, {
 } from 'react-native-svg';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
-
-import { IWeatherIconProps } from './types';
+import { IWeatherIconProps } from '../../types/weatherIcon.types';
 
 export const ThunderstormIcon = ({
     width = STYLE_VARIABLES.weatherIconSize,

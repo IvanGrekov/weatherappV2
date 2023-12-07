@@ -32,6 +32,7 @@ export interface ICurrentWeather {
     pressure: number;
     humidity: number;
     visibility: number;
+    windDeg: number;
     windSpeed: number;
     weatherDescription: IWeatherDescription;
 }
@@ -72,6 +73,7 @@ export interface IApiCurrentWeather {
     pressure: number;
     humidity: number;
     visibility: number;
+    wind_deg: number;
     wind_speed: number;
     weather: IWeatherDescription[];
 }
