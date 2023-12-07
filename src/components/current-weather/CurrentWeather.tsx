@@ -31,7 +31,7 @@ export default function CurrentWeather({
                 </VStack>
             </VStack>
 
-            <HStack justifyContent="space-between">
+            <HStack style={styles.minorInfoWrapper}>
                 <Text>{`${windSpeed} m/s`}</Text>
 
                 <Text>{`${visibility} m`}</Text>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     mainInfoWrapper: {
         position: 'relative',
         justifyContent: 'center',
-        marginTop: -15,
+        marginTop: -10,
     },
     tempWrapper: {
         height: '90%',
@@ -56,5 +56,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         backgroundColor: STYLE_VARIABLES.bgInvisible,
+    },
+    minorInfoWrapper: {
+        marginTop: -20,
+        justifyContent: 'space-between',
     },
 });

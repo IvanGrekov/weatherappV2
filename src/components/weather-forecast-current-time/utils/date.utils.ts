@@ -1,15 +1,27 @@
+import { format } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
 
-export const getTime = (timezone: string): string => {
+export const getTimestamp = (timezone: string): number => {
     const date = new Date();
-    const formattedDate = formatInTimeZone(date, timezone, 'HH:mm');
+    const formattedTimestamp = formatInTimeZone(
+        date,
+        timezone,
+        'yyyy-MM-dd HH:mm:ss',
+    );
 
-    return formattedDate;
+    return new Date(formattedTimestamp).getTime();
 };
 
-export const getDate = (timezone: string): string => {
-    const date = new Date();
-    const formattedDate = formatInTimeZone(date, timezone, 'MMM dd');
+type TFormatTimestamp = (timestamp: number) => string;
+
+export const getTime: TFormatTimestamp = (timestamp) => {
+    const formattedTime = format(timestamp, 'HH:mm');
+
+    return formattedTime;
+};
+
+export const getDate: TFormatTimestamp = (timestamp) => {
+    const formattedDate = format(timestamp, 'MMM dd');
 
     return formattedDate;
 };
