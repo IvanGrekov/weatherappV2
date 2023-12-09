@@ -4,8 +4,8 @@ import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { IWeatherIconProps } from '../../types/weatherIcon.types';
 
 export const VisibilityIcon = ({
-    width = STYLE_VARIABLES.smallWeatherIconSize,
-    height = STYLE_VARIABLES.smallWeatherIconSize,
+    width = STYLE_VARIABLES.smWeatherIconSize,
+    height = STYLE_VARIABLES.smWeatherIconSize,
 }: IWeatherIconProps): JSX.Element => {
     return (
         <Svg

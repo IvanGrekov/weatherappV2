@@ -4,27 +4,29 @@ import { VStack, Text, HStack } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 
-interface IMinorInfoItemProps {
-    label: string;
+interface IMinorWeatherInfoItemProps {
+    label?: string;
     value: string;
+    valueFontSize?: number;
     icon: JSX.Element;
 }
 
-export default function MinorInfoItem({
+export default function MinorWeatherInfoItem({
     label,
     value,
+    valueFontSize = STYLE_VARIABLES.smFontSize,
     icon,
-}: IMinorInfoItemProps): JSX.Element {
+}: IMinorWeatherInfoItemProps): JSX.Element {
     return (
         <VStack space={STYLE_VARIABLES.smSpacing} style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
+            {!!label && <Text style={styles.label}>{label}</Text>}
 
             <HStack
                 space={STYLE_VARIABLES.smSpacing}
                 style={styles.valueWrapper}
             >
                 {icon}
-                <Text style={styles.value}>{value}</Text>
+                <Text fontSize={valueFontSize}>{value}</Text>
             </HStack>
         </VStack>
     );
@@ -40,8 +42,5 @@ const styles = StyleSheet.create({
     },
     valueWrapper: {
         alignItems: 'center',
-    },
-    value: {
-        fontSize: STYLE_VARIABLES.smFontSize,
     },
 });

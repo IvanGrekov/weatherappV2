@@ -8,8 +8,7 @@ import { HumidityIcon } from '../minor-weather-info-icons/HumidityIcon';
 import { PressureIcon } from '../minor-weather-info-icons/PressureIcon';
 import { VisibilityIcon } from '../minor-weather-info-icons/VisibilityIcon';
 import { WindIcon } from '../minor-weather-info-icons/WindIcon';
-
-import MinorInfoItem from './MinorInfoItem';
+import MinorWeatherInfoItem from '../minor-weather-info-item/MinorWeatherInfoItem';
 
 type TCurrentWeatherMinorInfoProps = Pick<
     ICurrentWeather,
@@ -26,12 +25,12 @@ export default function CurrentWeatherMinorInfo({
     return (
         <HStack space={STYLE_VARIABLES.mdSpacing} style={styles.container}>
             <VStack space={STYLE_VARIABLES.mdSpacing} style={styles.column}>
-                <MinorInfoItem
+                <MinorWeatherInfoItem
                     label="Wind"
                     value={`${windSpeed} m/s`}
                     icon={<WindIcon rotateZ={windDeg} />}
                 />
-                <MinorInfoItem
+                <MinorWeatherInfoItem
                     label="Visibility"
                     value={`${visibility} m`}
                     icon={<VisibilityIcon />}
@@ -39,12 +38,12 @@ export default function CurrentWeatherMinorInfo({
             </VStack>
 
             <VStack space={STYLE_VARIABLES.mdSpacing} style={styles.column}>
-                <MinorInfoItem
+                <MinorWeatherInfoItem
                     label="Humidity"
                     value={`${humidity}%`}
                     icon={<HumidityIcon />}
                 />
-                <MinorInfoItem
+                <MinorWeatherInfoItem
                     label="Pressure"
                     value={`${pressure} hPa`}
                     icon={<PressureIcon />}

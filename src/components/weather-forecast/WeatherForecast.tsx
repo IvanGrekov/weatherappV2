@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { ScrollView, VStack, HStack } from 'native-base';
+import { ScrollView, VStack, HStack, Spacer } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import { TLocation } from '../../types/location.types';
 import CurrentWeather from '../current-weather/CurrentWeather';
+import DailyWeather from '../daily-weather/DailyWeather';
 import EmptyStateIndicator from '../empty-state-indicator/EmptyStateIndicator';
 import ErrorIndicator from '../error-indicator/ErrorIndicator';
 import LoadingIndicator from '../loading-indicator/LoadingIndicator';
@@ -30,7 +31,7 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
         );
     }
 
-    const { timezone, current } = weatherForecast;
+    const { timezone, current, daily } = weatherForecast;
 
     return (
         <ScrollView>
@@ -44,6 +45,10 @@ export default function WeatherForecast(location: TLocation): JSX.Element {
                 </HStack>
 
                 <CurrentWeather {...current} />
+
+                <Spacer size={STYLE_VARIABLES.lgSpacing} />
+
+                <DailyWeather dailyWeather={daily} timezone={timezone} />
             </VStack>
         </ScrollView>
     );

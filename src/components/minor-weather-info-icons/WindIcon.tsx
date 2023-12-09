@@ -8,8 +8,8 @@ interface IWindIconProps extends IWeatherIconProps {
 }
 
 export const WindIcon = ({
-    width = STYLE_VARIABLES.smallWeatherIconSize,
-    height = STYLE_VARIABLES.smallWeatherIconSize,
+    width = STYLE_VARIABLES.smWeatherIconSize,
+    height = STYLE_VARIABLES.smWeatherIconSize,
     rotateZ = 0,
 }: IWindIconProps): JSX.Element => {
     return (

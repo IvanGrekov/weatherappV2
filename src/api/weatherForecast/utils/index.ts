@@ -19,8 +19,8 @@ const convertApiCurrentWeatherToCurrentWeather: TConvertApiCurrentWeatherToCurre
         humidity,
         pressure,
         visibility,
-        wind_deg,
         wind_speed,
+        wind_deg,
         weather,
     }) => {
         return {
@@ -29,8 +29,8 @@ const convertApiCurrentWeatherToCurrentWeather: TConvertApiCurrentWeatherToCurre
             humidity,
             pressure,
             visibility,
-            windDeg: wind_deg,
             windSpeed: wind_speed,
+            windDeg: wind_deg,
             weatherDescription: weather[0],
         };
     };
@@ -40,12 +40,23 @@ type TConvertApiDailyWeatherToDailyWeather = (
 ) => IDailyWeather;
 
 const convertApiDailyWeatherToDailyWeather: TConvertApiDailyWeatherToDailyWeather =
-    ({ temp, feels_like, humidity, pressure, wind_speed, weather }) => {
+    ({
+        dt,
+        temp,
+        feels_like,
+        humidity,
+        pressure,
+        wind_speed,
+        wind_deg,
+        weather,
+    }) => {
         const {
             morn: morningTemp,
             day: dayTemp,
             eve: eveningTemp,
             night: nightTemp,
+            min: minTemp,
+            max: maxTemp,
         } = temp;
         const {
             morn: morningFeelsLike,
@@ -55,11 +66,14 @@ const convertApiDailyWeatherToDailyWeather: TConvertApiDailyWeatherToDailyWeathe
         } = feels_like;
 
         return {
+            timeSlot: dt * 1000,
             temp: {
                 morning: morningTemp,
                 day: dayTemp,
                 evening: eveningTemp,
                 night: nightTemp,
+                min: minTemp,
+                max: maxTemp,
             },
             feelsLike: {
                 morning: morningFeelsLike,
@@ -69,6 +83,7 @@ const convertApiDailyWeatherToDailyWeather: TConvertApiDailyWeatherToDailyWeathe
             },
             humidity,
             pressure,
+            windDeg: wind_deg,
             windSpeed: wind_speed,
             weatherDescription: weather[0],
         };

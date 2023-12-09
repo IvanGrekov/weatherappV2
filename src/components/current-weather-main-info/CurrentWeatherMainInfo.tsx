@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { VStack, Text, Badge } from 'native-base';
+import { VStack, Text } from 'native-base';
 
 import { STYLE_VARIABLES } from '../../constants/style.constants';
 import {
@@ -11,6 +11,7 @@ import {
     roundTemperature,
     getTemperatureColor,
 } from '../../utils/weather.utils';
+import FeelsLikeBadge from '../feels-like-badge/FeelsLikeBadge';
 
 type TCurrentTemperatureProps = Pick<ICurrentWeather, 'temp' | 'feelsLike'> & {
     weatherDescription: IWeatherDescription['description'];
@@ -25,7 +26,6 @@ export default function CurrentWeatherMainInfo({
     const tempColor = getTemperatureColor(temperature);
 
     const feelsLikeTemperature = roundTemperature(feelsLike);
-    const feelsLikeColor = getTemperatureColor(feelsLikeTemperature);
 
     return (
         <VStack style={styles.container}>
@@ -34,17 +34,10 @@ export default function CurrentWeatherMainInfo({
             </Text>
 
             <Text color={tempColor} style={styles.temperature}>
-                {`${temperature}°`}
+                {temperature}°
             </Text>
 
-            <Badge
-                variant="solid"
-                backgroundColor={feelsLikeColor}
-                _text={styles.feelsLike}
-                style={styles.feelsLikeBadge}
-            >
-                {`Feels like ${feelsLikeTemperature}°`}
-            </Badge>
+            <FeelsLikeBadge value={feelsLikeTemperature} />
         </VStack>
     );
 }
@@ -62,12 +55,5 @@ const styles = StyleSheet.create({
     temperature: {
         fontSize: STYLE_VARIABLES.xxlFontSize,
         lineHeight: STYLE_VARIABLES.xxlFontSize,
-    },
-    feelsLikeBadge: {
-        borderRadius: STYLE_VARIABLES.mdRadius,
-    },
-    feelsLike: {
-        fontSize: STYLE_VARIABLES.smFontSize,
-        color: STYLE_VARIABLES.bgColor,
     },
 });

@@ -187,7 +187,8 @@ export const STYLE_VARIABLES = {
     xlFontSize: FONT_SIZES['3xl'],
     xxlFontSize: FONT_SIZES['9xl'],
 
-    smallWeatherIconSize: SIZE['9'],
-    weatherIconSize: SIZE['16'],
+    xsWeatherIconSize: SIZE['7'],
+    smWeatherIconSize: SIZE['9'],
+    weatherIconSize: SIZE['12'],
     currentWeatherIconSize: SIZE['80'],
 };

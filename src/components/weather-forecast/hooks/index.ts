@@ -4,7 +4,7 @@ import { IGeoLocation } from '../../../types/location.types';
 import { getLocationCacheKey } from '../../../utils/cache.utils';
 import { weatherCache } from '../constants';
 import { TWeatherForecastState } from '../types';
-import { getWeatherForecast } from '../utils/getWeatherForecast.utils';
+import { getWeatherForecast } from '../utils';
 
 type TUseWeatherForecast = (args: IGeoLocation) => {
     weatherForecast: TWeatherForecastState;

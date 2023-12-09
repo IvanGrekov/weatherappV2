@@ -32,8 +32,8 @@ export interface ICurrentWeather {
     pressure: number;
     humidity: number;
     visibility: number;
-    windDeg: number;
     windSpeed: number;
+    windDeg: number;
     weatherDescription: IWeatherDescription;
 }
 
@@ -42,6 +42,8 @@ export interface IDailyWeatherTemp {
     day: number;
     evening: number;
     night: number;
+    min: number;
+    max: number;
 }
 
 export interface IDailyWeatherFeelsLike {
@@ -52,11 +54,13 @@ export interface IDailyWeatherFeelsLike {
 }
 
 export interface IDailyWeather {
+    timeSlot: number;
     temp: IDailyWeatherTemp;
     feelsLike: IDailyWeatherFeelsLike;
     pressure: number;
     humidity: number;
     windSpeed: number;
+    windDeg: number;
     weatherDescription: IWeatherDescription;
 }
 
@@ -73,17 +77,20 @@ export interface IApiCurrentWeather {
     pressure: number;
     humidity: number;
     visibility: number;
-    wind_deg: number;
     wind_speed: number;
+    wind_deg: number;
     weather: IWeatherDescription[];
 }
 
 export interface IApiDailyWeather {
+    dt: number;
     temp: {
         morn: number;
         day: number;
         eve: number;
         night: number;
+        min: number;
+        max: number;
     };
     feels_like: {
         morn: number;
@@ -94,6 +101,7 @@ export interface IApiDailyWeather {
     pressure: number;
     humidity: number;
     wind_speed: number;
+    wind_deg: number;
     weather: IWeatherDescription[];
 }
 
