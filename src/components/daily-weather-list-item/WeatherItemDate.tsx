@@ -19,6 +19,7 @@ export default function WeatherItemDate({
             {getTimeZonedDate({
                 timeSlot: timeSlot,
                 timezone,
+                withDayOfWeek: true,
             })}
         </Text>
     );
@@ -26,7 +27,7 @@ export default function WeatherItemDate({
 
 const styles = StyleSheet.create({
     date: {
-        fontSize: STYLE_VARIABLES.mdFontSize,
+        fontSize: STYLE_VARIABLES.smFontSize,
         fontWeight: 'bold',
     },
 });
