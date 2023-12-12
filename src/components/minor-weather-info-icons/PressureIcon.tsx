@@ -12,7 +12,7 @@ export const PressureIcon = ({
             width={width}
             height={height}
             viewBox="0 0 35 35"
-            transform="translate(5, 1)"
+            style={{ transform: [{ translateY: 1 }, { translateX: 5 }] }}
         >
             <Path
                 fill={STYLE_VARIABLES.fgColor}

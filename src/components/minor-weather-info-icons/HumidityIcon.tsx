@@ -12,7 +12,7 @@ export const HumidityIcon = ({
             viewBox="0 0 24 24"
             width={width}
             height={height}
-            transform="translate(0, -3)"
+            style={{ transform: [{ translateY: -3 }] }}
         >
             <Path
                 fill={STYLE_VARIABLES.fgColor}

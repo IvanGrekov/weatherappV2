@@ -15,7 +15,12 @@ export const RainDayIcon = ({
     height = STYLE_VARIABLES.weatherIconSize,
 }: IWeatherIconProps): JSX.Element => {
     return (
-        <Svg viewBox="0 0 64 64" width={width} height={height}>
+        <Svg
+            viewBox="0 0 72 72"
+            width={width}
+            height={height}
+            style={{ transform: [{ translateY: 14 }] }}
+        >
             <Defs>
                 <LinearGradient
                     id="linear-gradient"
@@ -103,7 +108,12 @@ export const RainNightIcon = ({
     height = STYLE_VARIABLES.weatherIconSize,
 }: IWeatherIconProps): JSX.Element => {
     return (
-        <Svg viewBox="0 0 64 64" width={width} height={height}>
+        <Svg
+            viewBox="0 0 70 70"
+            width={width}
+            height={height}
+            style={{ transform: [{ translateY: 10 }] }}
+        >
             <Defs>
                 <LinearGradient
                     id="linear-gradient"

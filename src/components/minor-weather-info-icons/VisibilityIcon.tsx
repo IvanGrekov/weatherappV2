@@ -12,7 +12,7 @@ export const VisibilityIcon = ({
             width={width}
             height={height}
             viewBox="0 0 25 25"
-            transform="translate(0, 1)"
+            style={{ transform: [{ translateY: 1 }] }}
         >
             <Path
                 fill={STYLE_VARIABLES.fgColor}
